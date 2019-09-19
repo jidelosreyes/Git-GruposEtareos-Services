@@ -1,7 +1,6 @@
 ﻿using GrupoEtareos.App.Filter;
 using GruposEtareos.BI;
 using GruposEtareos.BI.EntitiesAditional;
-using System.Web.Http.Cors;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -16,8 +15,7 @@ namespace GrupoEtareos.App.Areas.Contratacion.Controllers
     /// <summary>
     /// AuthorizeUser es parametrizado para evitar que se haga uso del controlador sin haberse logueado con las credenciades de INTEGRA
     /// </summary>
-    //[AuthorizeUser]
-    [EnableCors(origins: "http://localhost:4200/", headers: "*", methods: "*")]
+    [AuthorizeUser]
     public class ContratacionController : Controller
     {
         /// <summary>
