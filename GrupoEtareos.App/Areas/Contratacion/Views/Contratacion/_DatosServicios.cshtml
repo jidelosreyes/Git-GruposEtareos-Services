@@ -1,0 +1,800 @@
+﻿@model GruposEtareos.BI.PS_SERVICIOS
+@using Kendo.Mvc.UI
+
+<div class="form-row tabla-datos1" id="formDatosServicio">
+    @Html.HiddenFor(m => m.FECHA_CREACION)
+    <div class="form-group col-md-12">
+        @Html.Label("DATOS DEL SERVICO >>", new { @class = "TITULOS1", style = "text-align: left" })
+        <div class="form-row">
+            <div class="form-group col-md-12"></div>
+        </div>
+        <!--INICIO form-row -->
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_GRUPO, "Indicador Servicio", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COD_GRUPO)//.Name("ddlIndicadorServicio")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.IndicadorServicio)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el Indicador Servicio", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_GRUPO"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_SUBGRUPO, "Sub Grupo", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COD_SUBGRUPO)//.Name("ddlSubGrupo")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.SubGrupo)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el Sub Grupo", style = "width: 70%;" })
+                )
+                <a style="width: 5%" href="#" data-role="button" id="btnConsultaSubGrupo" class="k-button-icon">
+                    <span class="k-icon k-i-search"></span>
+                </a>
+                <span class="k-invalid-msg col-md-3" data-for="COD_SUBGRUPO"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" id="dvValidarServicio">
+                @Html.LabelFor(model => model.COD_SERVICIO, "Código Servicio", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(model => model.COD_SERVICIO)//.Name("CodigoServicio")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar el Código del Servicio", @class = "k-textbox", style = "width: 20%;", @maxlength = "18" })
+                )
+                <span class="k-invalid-msg  col-md-3" data-for="COD_SERVICIO"></span>
+            </div>
+            <div class="form-group col-md-6" id="dvDescripcionServicio">
+                @Html.LabelFor(model => model.DESCR_SERVICIO, "Descripción Servicio", htmlAttributes: new { @class = "control-label labels" })
+                @Html.TextAreaFor(model => model.DESCR_SERVICIO, new { required = "required", @class = "k-textbox", @maxlength = "254", style = "width: 70%;", data_required_msg = "Debe digitar la Descripción del Servicio" })
+                <span class="k-invalid-msg col-md-3" data-for="DESCR_SERVICIO"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_ENTIDAD, "Código Entidad", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(model => model.COD_ENTIDAD)//.Name("CodigoEntidad")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar el Código de la Entidad", @class = "k-textbox", style = "width: 20%;", @maxlength = "18" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_ENTIDAD"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_CLASIF_CONTABLE, "Clasificación Contable", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COD_CLASIF_CONTABLE)//.Name("ddlClasificacionContable")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.Gn_ClasificaContable)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar la Clasificación Contable", style = "width: 70%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_CLASIF_CONTABLE"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.APLICA_ESPECIALIDAD, "Aplica Especialidad", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.APLICA_ESPECIALIDAD)//.Name("ddlAplicaEspecialidad")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.AplicaEspecialidad)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar la Aplicación de la Especialidad", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="APLICA_ESPECIALIDAD"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_CONCEPTOC_EVENTO, "CCosto Evento", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COD_CONCEPTOC_EVENTO)//.Name("ddlCCostoEvento")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.Gn_ConceptoContableEvento)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el Concepto Contable para Evento", style = "width: 70%;" })
+                )
+                <a style="width: 5%" href="#" data-role="button" id="btnConsultaCentroCosto" class="k-button-icon">
+                    <span class="k-icon k-i-search"></span>
+                </a>
+                <span class="k-invalid-msg col-md-3" data-for="COD_CONCEPTOC_EVENTO"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_CONCEPTOC_CAPITA, "CCosto Capitación", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COD_CONCEPTOC_CAPITA)//.Name("ddlCCostoCapitacion")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.Gn_ConceptoCapitacion)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el Concepto Contable para Capitación", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_CONCEPTOC_CAPITA"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COMPLEJIDAD, "Complejidad", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COMPLEJIDAD)//.Name("ddlComplejidad")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.Complejidad)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar la Complejidad", style = "width: 70%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COMPLEJIDAD"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.COD_TIPO_SERVICIO, "Tipo Servicio", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.COD_TIPO_SERVICIO)//.Name("ddlTipoServicio")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.TipoServicio)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el Tipo de Servicio", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_TIPO_SERVICIO"></span>
+            </div>
+            <div class="form-group col-md-6" style="display: none" id="dvRegistroSanitario">
+                @Html.LabelFor(model => model.REGISTRO_SANITARIO, "Registro Sanitario", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(model => model.REGISTRO_SANITARIO)//.Name("RegistroSanitario")
+                    .HtmlAttributes(new { @class = "k-textbox", data_required_msg = "Debe digitar el Registro Sanitario", style = "width: 70%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="REGISTRO_SANITARIO"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" id="dvCum" style="display: none">
+                @Html.LabelFor(model => model.CUM, "CUM", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(model => model.CUM)//.Name("Cum")
+                    .HtmlAttributes(new { @class = "k-textbox", data_required_msg = "Debe digitar el CUM", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="CUM"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="form-row" style="display: none" id="pnlMagisytrarVital">
+                    @*<div class="form-group col-md-6">
+                        </div>*@
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.FORMULA_MAGISTRAL, "Formula Magistral", htmlAttributes: new { @class = "control-label labels" })
+                        <div class="form-check">
+                            <label class="k-checkbox-label">
+                                @if (Model.FORMULA_MAGISTRAL == null)
+                                {
+                                    Model.FORMULA_MAGISTRAL = false;
+                                }
+                                @Html.CheckBoxFor(model => model.FORMULA_MAGISTRAL.Value, new { Name = "FORMULA_MAGISTRAL", @id = "FORMULA_MAGISTRAL" })
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.VITAL_DISPONIBLE, "Vital No Disponible", htmlAttributes: new { @class = "control-label labels" })
+                        <div class="form-check">
+                            <label class="k-checkbox-label">
+                                @if (Model.VITAL_DISPONIBLE == null)
+                                {
+                                    Model.VITAL_DISPONIBLE = false;
+                                }
+                                @Html.CheckBoxFor(model => model.VITAL_DISPONIBLE.Value, new { Name = "VITAL_DISPONIBLE", @id = "VITAL_DISPONIBLE" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" style="display: none" id="pnlServiciosDCI">
+            <div class="form-group col-md-12">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.ID_TECNOLOGIA, "Tencología", htmlAttributes: new { @class = "control-label labels" })
+                        @(Html.Kendo().DropDownListFor(model => model.ID_TECNOLOGIA)//.Name("ddlTecnologia")
+                            .OptionLabel("Seleccione")
+                            .BindTo(ViewBag.TecnologiaDCI)
+                            .HtmlAttributes(new { data_required_msg = "Debe seleccionar la Tencología", style = "width: 80%;" })
+                        )
+                        <a style="width: 5%" href="#" id="btnConsultaTecnologia" data-role="button" class="k-button-icon">
+                            <span class="k-icon k-i-search"></span>
+                        </a>
+                        <span class="k-invalid-msg col-md-3" data-for="ID_TECNOLOGIA"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ABREVIATURA, "CUPS con Punto", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(model => model.ABREVIATURA)//.Name("CupsConPuntos")
+                    .HtmlAttributes(new { @class = "k-textbox", data_required_msg = "Debe digitar el CUPS con Punto", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="ABREVIATURA"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CODIGO_IUM, "Código IUM", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(model => model.CODIGO_IUM)
+                    .HtmlAttributes(new { @class = "k-textbox", data_required_msg = "Debe digitar el Código IUM", style = "width: 70%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="CODIGO_IUM"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" id="dvEstado">
+                @Html.LabelFor(model => model.ID_ESTADO_SERVICIOS, "Estado", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.ID_ESTADO_SERVICIOS)//.Name("ddlEstado")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.Estado)
+                    .HtmlAttributes(new { data_required_msg = "Debe seleccionar el Estado", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="ID_ESTADO_SERVICIOS"></span>
+            </div>
+            <div class="form-group col-md-6">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.AUTORIZACION_RELACIONADA, "Requiere Autorización Relacionada", htmlAttributes: new { @class = "control-label labels" })
+                <div class="form-check">
+                    <label class="k-checkbox-label">
+                        @if (Model.AUTORIZACION_RELACIONADA == null)
+                        {
+                            Model.AUTORIZACION_RELACIONADA = false;
+                        }
+                        @Html.CheckBoxFor(model => model.AUTORIZACION_RELACIONADA.Value, new { @id = "AUTORIZACION_RELACIONADA", Name = "AUTORIZACION_RELACIONADA" })
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12" id="dvObservacionServicio">
+                @Html.LabelFor(model => model.OBSERVACIONES, "Observaciones", htmlAttributes: new { @class = "control-label labels" })
+                @Html.TextAreaFor(model => model.OBSERVACIONES, new { @class = "k-textbox", @maxlength = "254", style = "width: 85%; height: 50px", data_required_msg = "Debe digitar las observaciones" })
+                <span class="k-invalid-msg" data-for="OBSERVACIONES"></span>
+            </div>
+        </div>
+        <!--FIN -- form-row -->
+    </div>
+
+    <!--Buscador de Subgrupo-->
+    <div class="form-row tabla-datos1" style="margin-left: 0px; margin-right: 0px; width: 100%; display: none;" id="dvConsultaSubGrupo">
+        <!--Buscador de Subgrupo-->
+        <div class="form-group col-md-11">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.Label("Código SubGrupo", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("CodSubGrupo")
+                            .HtmlAttributes(new { @class = "k-textbox", @maxlength = "18" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarSubGrupoModal('Codigo')" id="btnCodigoBuscarSubGrupo" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.Label("Descripción Sub Grupo", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("DescSubGrupo")
+                            .HtmlAttributes(new { @style = "width: 90%", @class = "k-textbox", @maxlength = "254" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarSubGrupoModal('Descripcion')" id="btnDescripcionBuscarSubGrupo" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div id="gridBusquedaSubGrupo" class="tabla-datos1" style="width: 100%; margin-left: 1%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Buscador de Centro Costo-->
+    <div class="form-row tabla-datos1" style="margin-left: 0px; margin-right: 0px; width: 100%; display: none;" id="dvConsultaCentroCosto">
+        <!--Buscador de Centro Costo-->
+        <div class="form-group col-md-11">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.Label("Código Centro de Costo", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("CodCentroCosto")
+                            .HtmlAttributes(new { @class = "k-textbox", @maxlength = "18" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarCentroCostoModal('Codigo')" id="btnCodigoBuscarCentroCosto" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.Label("Descripción Centro de Costo", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("DescCentroCosto")
+                            .HtmlAttributes(new { @style = "width: 90%", @class = "k-textbox", @maxlength = "254" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarCentroCostoModal('Descripcion')" id="btnDescripcionBuscarCentroCosto" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div id="gridBusquedaCentroCosto" class="tabla-datos1" style="width: 100%; margin-left: 1%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Buscador de Tecnologia-->
+    <div class="form-row tabla-datos1" style="margin-left: 0px; margin-right: 0px; width: 100%; display: none;" id="dvConsultaTecnologia">
+        <!--Buscador de Tecnologia-->
+        <div class="form-group col-md-11">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.Label("Código Tecnología", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("CodTecnologia")
+                                    .HtmlAttributes(new { @class = "k-textbox", @maxlength = "18" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarTecnologiaModal('Codigo')" id="btnCodigoBuscarTecnologia" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.Label("Descripción Tecnología", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("DescTecnologia")
+                                    .HtmlAttributes(new { @style = "width: 90%", @class = "k-textbox", @maxlength = "254" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarTecnologiaModal('Descripcion')" id="btnDescripcionBuscarTecnologia" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div id="gridBusquedaTecnologia" class="tabla-datos1" style="width: 100%; margin-left: 1%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .k-window-content a {
+        color: #BBB;
+    }
+
+    .k-window-content p {
+        margin-bottom: 1em;
+    }
+</style>
+
+<script>
+    var Editar = '@ViewBag.Editar',
+        strCodigoServicio = '@ViewBag.strCodigoServicio',
+        strCodigoSubGrupo = '@ViewBag.strCodigoSubGrupo',
+        strCodigoGrupo = '@ViewBag.strCodigoGrupo',
+        //Urls para cargar combos dinamicos.
+        UrlIndicador = '@Url.Action("CargarListaSubGrupo", "Contratacion")',
+        UrlEditServicio = '@Url.Action("ConsultarServiciosPorCodigo", "Contratacion", new { area = "Contratacion" })',
+        UrlCCEvent = '@Url.Action("CargarLstConceptoContableEvento", "Contratacion")',
+        UrlEstado = '@Url.Action("ConsultarPorParametro", "Contratacion")',
+
+        UrlBuscarSubGrupo = '@Url.Action("CargarListaSubGrupo", "Contratacion", new { area = "Contratacion" })',
+        UrlBuscarTecnologia = '@Url.Action("ConsultarModalTecnologiaDCI", "Contratacion", new { area = "Contratacion" })',
+
+        funcActualizarDCI = true,
+        funcListarSubGrupos = null;
+
+    //#region function load page
+    $(function () {
+        $("#COD_SERVICIO").ForceAlfaNumericWithoutPoint();
+        $('body .k-button-icon').css("padding-right", "0px")
+        $("#btnConsultaSubGrupo").hide();
+        $("#btnDetalle_Paquete").hide();
+
+        //Función para cargar los conceptos contables por evento
+        var CargarLstConceptoContableEvento = function (cod_centro_costo) {
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: UrlCCEvent,
+                        data: {
+                            tipoConsulta: 0,
+                            tipoContrato: 'E',
+                            cod_centro_costo: cod_centro_costo,
+                        },
+                        dataType: "json",
+                        type: 'GET'
+                    }
+                }
+            });
+            $("#COD_CONCEPTOC_EVENTO").kendoDropDownList({
+                dataSource: dataSource,
+                optionLabel: {
+                    DESCR_SUBGRUPO: "Seleccione",
+                    dataValueField: "-1"
+                },
+                dataTextField: "DESCRIPCION",
+                dataValueField: "CONCEPTO_CONTABLE",
+                value: cod_centro_costo
+            });
+        }
+
+        //Función para cargar los estado de los servicios
+        var ConsultarPorParametro = function (intCodigoEstado) {
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: UrlEstado,
+                        data: {
+                            intCodigoEstado: intCodigoEstado,
+                        },
+                        dataType: "json",
+                        type: 'GET'
+                    }
+                }
+            });
+            $("#ID_ESTADO_SERVICIOS").kendoDropDownList({
+                dataSource: dataSource,
+                optionLabel: {
+                    DESCR_SUBGRUPO: "Seleccione",
+                    dataValueField: "-1"
+                },
+                dataTextField: "DECRIPCION",
+                dataValueField: "ID",
+                value: intCodigoEstado
+            });
+        }
+
+        //Función para desactivar controles cuando se edita un servicio.
+        var EditEnableServicio = function (d) {
+            $("#COD_GRUPO").data("kendoDropDownList").enable(false);
+            $("#COD_SUBGRUPO").data("kendoDropDownList").enable(false);
+            $("#COD_SERVICIO").data("kendoAutoComplete").enable(false);
+        }
+
+        $("#ABREVIATURA").ForceAlfaNumericWithPoint();
+        $("#CODIGO_IUM").ForceAlfaNumericWithPoint();
+        $("#REGISTRO_SANITARIO").ForceAlfaNumericWithoutPoint();
+        $("#CUM").ForceAlfaNumericWithoutPoint();
+        $("#DESCR_SERVICIO").ForceAlfaNumericDescriptionService();
+
+        //Función para validar que permita crear el servición dependiendo de las condiciones de la tecnología, tomado de la versión anterior de creación de servicio .NET 1.1
+        funcActualizarDCI = function () {
+            var strTipoTecnologia = "", strTipoServicio = "", strMensaje = "";
+            if (Editar === 'True') {
+                if ($("#COD_TIPO_SERVICIO").val() !== "" && $("#COD_TIPO_SERVICIO").val() !== "Seleccione") {
+                    strTipoServicio = $("#COD_TIPO_SERVICIO").data("kendoDropDownList").text().trim();
+                    if ($("#ID_TECNOLOGIA").val() === "") {
+                        strTipoTecnologia = null;
+                    } else {
+                        strTipoTecnologia = $("#ID_TECNOLOGIA").data("kendoDropDownList").text().trim();
+                    }
+
+                    strMensaje = "Cuando el Tipo de Servicio, sea " + strTipoServicio + " " + ", el tipo de Tecnologia no puede ser " + strTipoTecnologia + ". Seleccione la Tecnologia que corresponda ...!";
+                }
+            }
+
+            if (($("#COD_TIPO_SERVICIO").val() === "1" || $("#COD_TIPO_SERVICIO").val() === "3" || $("#COD_TIPO_SERVICIO").val() === "6" || $("#COD_TIPO_SERVICIO").val() === "7" || $("#COD_TIPO_SERVICIO").val() === "8") && $("#ID_TECNOLOGIA").val().trim() === "1") {
+                if (strMensaje !== "")
+                    toastr.info(strMensaje);
+                return false;
+            }
+            return true;
+        }
+
+        //Cuando se edita un servicio
+        if (Editar === 'True') {
+            var arrEditServicio = [];
+
+            EditEnableServicio();
+            CargarLstConceptoContableEvento($("#COD_CONCEPTOC_EVENTO").val()); //COD_CONCEPTOC_EVENTO -> ddlCCostoEvento
+            ConsultarPorParametro($("#ID_ESTADO_SERVICIOS").val());//ID_ESTADO_SERVICIOS -> ddlEstado
+
+            if ($("#ID_TECNOLOGIA").val() === "2" || $("#ID_TECNOLOGIA").val() === "4" || $("#ID_TECNOLOGIA").val() === "5") {
+                $("#ID_TECNOLOGIA").removeAttr("required");
+                $("#pnlServiciosDCI").hide();
+            } else {
+                $("#pnlServiciosDCI").show();
+                $("#ID_TECNOLOGIA").attr("required", "required");
+            }
+            $('#btnGrabar').text('Actualizar');
+
+            if ($("#COD_GRUPO").val().trim() === "PAQ") {
+                $("#btnDetalle_Paquete").show();
+            } else {
+                $("#btnDetalle_Paquete").hide();
+            }
+
+            if ($("#COD_GRUPO").val().trim() === "MD") {
+                $("#dvRegistroSanitario").show();
+                $("#dvCum").show();
+                $("#pnlMagisytrarVital").show();
+            } else {
+                $("#dvRegistroSanitario").hide();
+                $("#REGISTRO_SANITARIO").val("");
+                $("#dvCum").hide();
+                $("#CUM").val("");
+                $("#pnlMagisytrarVital").hide();
+            }
+
+            $("#dvEstado").show();
+        } else {
+            $("#COD_CONCEPTOC_CAPITA").data("kendoDropDownList").select(0);
+            $("#COD_CONCEPTOC_EVENTO").data("kendoDropDownList").select(0);
+            $("#btnDetalle_Paquete").hide();
+
+            $("#dvEstado").hide();
+        }
+
+        //Ejecuta evento change del combo de TIPO DE SERVICIO
+        $("#COD_TIPO_SERVICIO").on("change", function () {
+            var $this = $(this);
+            if ($this.val() !== "2" && $this.val() !== "4" && $this.val() !== "5") {
+                $("#pnlServiciosDCI").show();
+                $("#ID_TECNOLOGIA").attr("required", "required");
+            } else {
+                $("#ID_TECNOLOGIA").removeAttr("required");
+                $("#pnlServiciosDCI").hide();
+            }
+
+            if ($this.val() === "1") {
+                $("#pnlMagisytrarVital").show();
+            } else {
+                $("#pnlMagisytrarVital").hide();
+            }
+        });
+
+        //Función para cargar el combo de SubGrupo cuando se seleccione un grupo
+        funcListarSubGrupos = function (cod_grupo) {
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: UrlIndicador,
+                        data: {
+                            tipoConsulta: 4,
+                            codGrupo: cod_grupo
+                        },
+                        dataType: "json",
+                        type: 'GET'
+                    }
+                }
+            });
+
+            $("#COD_SUBGRUPO").kendoDropDownList({
+                dataSource: dataSource,
+                optionLabel: {
+                    DESCR_SUBGRUPO: "Seleccione",
+                    dataValueField: "-1"
+                },
+                dataTextField: "DESCR_SUBGRUPO",
+                dataValueField: "COD_SUBGRUPO",
+            });
+        };
+
+        //Ejecuta el evento Change del combo de Grupo o Indicador de Servicio
+        $("#COD_GRUPO").on("change", function () {
+            $("#btnConsultaSubGrupo").show();
+            var $this = $(this);
+
+            funcListarSubGrupos($this.val().trim());
+
+            if ($this.val().trim() === "PAQ" && $('#btnGrabar').text() === "Actualizar") {
+                $("#btnDetalle_Paquete").show();
+                $("#pnlMagisytrarVital").hide();
+            } else {
+                $("#btnDetalle_Paquete").hide();
+            }
+
+            if ($this.val().trim() === "MD") {
+                $("#dvRegistroSanitario").show();
+                $("#dvCum").show();
+                //$("#pnlMagisytrarVital").show();
+            } else {
+                $("#dvRegistroSanitario").hide();
+                $("#REGISTRO_SANITARIO").val("");
+                $("#dvCum").hide();
+                $("#CUM").val("");
+                //$("#pnlMagisytrarVital").hide();
+            }
+        });
+
+        $("#CodCentroCosto").ForceNumericOnly();
+        $("#DescCentroCosto").ForceAlfaNumericWithPoint();
+    });
+    //#endregion function load page
+    
+    /*============================================================= PANEL MODAL BUSQUEDA ==========================================================================================*/
+    //#region Modal Busquedas
+
+    ///Funcion que se ejecuta cuando se presiona click en los botones de lupa por descripcion o codigo del modal de busqueda por subgrupo
+    var ConsultarSubGrupoModal = function (tipoBusqueda) {
+        if (tipoBusqueda === "Descripcion") {
+            $("#CodSubGrupo").val("");
+        } else {
+            $("#DescSubGrupo").val("");
+        }
+
+        var columns = [
+            {
+                title: '',
+                command: {
+                    width: 20,
+                    template: "<a id='lnkConsultaReg' style='width: 5%' href='javascript:void(0);' onclick='SeleccionarGridModal($(this));' data-role='button' "
+                              + "data-grid-name='gridBusquedaSubGrupo' data-div-modal-name='dvConsultaSubGrupo' data-load-combo='COD_SUBGRUPO' "
+                              + "class='k-button-icon'><span class='k-icon k-i-search' style='margin-left: 0%;'></span></a>",
+                },
+                width: 15,
+                attributes: {
+                    style: "text-align: center;"
+                }
+            },
+            {
+                field: 'COD_SUBGRUPO',
+                title: 'Código SubGrupo',
+                width: 60
+            },
+            {
+                field: 'DESCR_SUBGRUPO',
+                title: 'Descripción',
+                width: 250
+            },
+        ];
+
+        $.ajax({
+            url: UrlBuscarSubGrupo,
+            type: 'GET',
+            dataType: "json",
+            data: {
+                codGrupo: $("#COD_GRUPO").val(),
+                codSubGrupo: $("#CodSubGrupo").data("kendoAutoComplete").value(),
+                descr_subgrupo: $("#DescSubGrupo").data("kendoAutoComplete").value(),
+                tipoConsulta: ($("#CodSubGrupo").data("kendoAutoComplete").value() !== "" ? 2 : ($("#DescSubGrupo").data("kendoAutoComplete").value() !== "" ? 3 : 0)),
+            },
+            success: function (data) {
+                if (data != null && data != null && data.length > 0) {
+                    CreateGridBusqueda(data, columns, $("#gridBusquedaSubGrupo"), $("#dvConsultaSubGrupo"), scrollTopWindow);
+                } else {
+                    toastr.info("No hay resultados para la opción de busqueda seleccionada, favor intente nuevamente");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr.error($.parseHTML(xhr.responseText));
+            }
+        });
+    }
+
+    ///Abre el modal de busqueda por SubGrupo
+    $("#btnConsultaSubGrupo").on("click", function () {
+        scrollTopWindow = $(window).scrollTop();
+        funcOpenModal("Busqueda por Sub Grupo", $("#dvConsultaSubGrupo"), $("#gridBusquedaSubGrupo"), $("#CodSubGrupo"), $("#DescSubGrupo"));
+    });
+
+    ///Abre el modal de busqueda por Centro de Costo
+    $("#btnConsultaCentroCosto").on("click", function () {
+        scrollTopWindow = $(window).scrollTop();
+        console.log("top: ", $(window).scrollTop())
+        funcOpenModal("Busqueda por Centro de Costo", $("#dvConsultaCentroCosto"), $("#gridBusquedaCentroCosto"), $("#CodCentroCosto"), $("#DescCentroCosto"));
+    });
+
+    ///Funcion que se ejecuta cuando se presiona click en los botones de lupa por descripcion o codigo del modal de busqueda por Centro de Costo
+    var ConsultarCentroCostoModal = function (tipoBusqueda) {
+        if (tipoBusqueda === "Descripcion") {
+            $("#CodCentroCosto").val("");
+        } else {
+            $("#DescCentroCosto").val("");
+        }
+
+        var columns = [
+            {
+                title: '',
+                command: {
+                    width: 20,
+                    template: "<a id='lnkConsultaReg' style='width: 5%' href='javascript:void(0);' onclick='SeleccionarGridModal($(this));' data-role='button' "
+                              + "data-grid-name='gridBusquedaCentroCosto' data-div-modal-name='dvConsultaCentroCosto' data-load-combo='COD_CONCEPTOC_EVENTO' "
+                              + "class='k-button-icon'><span class='k-icon k-i-search' style='margin-left: -60%;'></span></a>",
+                },
+                width: 15,
+                attributes: {
+                    style: "text-align: center;"
+                }
+            },
+            {
+                field: 'CONCEPTO_CONTABLE',
+                title: 'Concepto Contable',
+                width: 60,
+                hidden: true
+            },
+            {
+                field: 'DESCRIPCION',
+                title: 'Descripción',
+                width: 250
+            },
+        ];
+
+        $.ajax({
+            url: UrlCCEvent,
+            type: 'GET',
+            dataType: "json",
+            data: {
+                cod_centro_costo: $("#CodCentroCosto").val(),
+                desc_centro_costo: $("#DescCentroCosto").val(),
+            },
+            success: function (data) {
+                if (data != null && data != null && data.length > 0) {
+                    CreateGridBusqueda(data, columns, $("#gridBusquedaCentroCosto"), $("#dvConsultaCentroCosto"), scrollTopWindow);
+                } else {
+                    toastr.info("No hay resultados para la opción de busqueda seleccionada, favor intente nuevamente");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr.error($.parseHTML(xhr.responseText));
+            }
+        });
+    }
+
+    ///Abre el modal de busqueda por Tecnología
+    $("#btnConsultaTecnologia").on("click", function () {
+        scrollTopWindow = $(window).scrollTop();
+        funcOpenModal("Busqueda por Tecnología", $("#dvConsultaTecnologia"), $("#gridBusquedaTecnologia"), $("#CodTecnologia"), $("#DescTecnologia"));
+    });
+
+    ///Funcion que se ejecuta cuando se presiona click en los botones de lupa por descripcion o codigo del modal de busqueda por Tecnología
+    var ConsultarTecnologiaModal = function (tipoBusqueda) {
+        if (tipoBusqueda === "Descripcion") {
+            $("#CodTecnologia").val("");
+        } else {
+            $("#DescTecnologia").val("");
+        }
+
+        var columns = [
+            {
+                title: '',
+                command: {
+                    width: 20,
+                    template: "<a id='lnkConsultaReg' style='width: 5%' href='javascript:void(0);' onclick='SeleccionarGridModal($(this));' data-role='button' "
+                              + "data-grid-name='gridBusquedaTecnologia' data-div-modal-name='dvConsultaTecnologia' data-load-combo='ID' "
+                              + "class='k-button-icon'><span class='k-icon k-i-search' style='margin-left: -60%;'></span></a>",
+                },
+                width: 15,
+                attributes: {
+                    style: "text-align: center;"
+                }
+            },
+            {
+                field: 'ID',
+                title: 'Tecnología',
+                width: 60,
+                hidden: false
+            },
+            {
+                field: 'DESCRIPCION_SERVICIO',
+                title: 'Descripción',
+                width: 250
+            },
+        ];
+
+        $.ajax({
+            url: UrlBuscarTecnologia,
+            type: 'GET',
+            dataType: "json",
+            data: {
+                strCodDCI: $("#CodTecnologia").val(),
+                strDescDCI: $("#DescTecnologia").val(),
+                intTipoServicio: 0,
+            },
+            success: function (data) {
+                if (data != null && data != null && data.length > 0) {
+                    CreateGridBusqueda(data, columns, $("#gridBusquedaTecnologia"), $("#dvConsultaTecnologia"), scrollTopWindow);
+                } else {
+                    toastr.info("No hay resultados para la opción de busqueda seleccionada, favor intente nuevamente");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr.error($.parseHTML(xhr.responseText));
+            }
+        });
+    }
+
+    //Función para seleccionar un item de la grilla de los modal del busqueda.
+    function SeleccionarGridModal(e) {
+        var row = e.select().closest("tr");
+        var gridName = e.attr("data-grid-name");
+        var divModalName = e.attr("data-div-modal-name");
+        var fieldLoadModal = e.attr("data-load-combo");
+        var grid = $('#' + gridName).data('kendoGrid');
+        var dataItem = grid.dataItem(row);
+
+        if (fieldLoadModal === "COD_SUBGRUPO") {
+            $("#COD_SUBGRUPO").val(dataItem.COD_SUBGRUPO).data("kendoDropDownList").value(dataItem.COD_SUBGRUPO);
+        } else if (fieldLoadModal === "COD_CONCEPTOC_EVENTO") {
+            $("#COD_CONCEPTOC_EVENTO").val(dataItem.CONCEPTO_CONTABLE).data("kendoDropDownList").value(dataItem.CONCEPTO_CONTABLE);
+        } else if (fieldLoadModal === "ID") {
+            $("#ID_TECNOLOGIA").val(dataItem.ID).data("kendoDropDownList").value(dataItem.ID);
+        }
+
+        $("#" + divModalName).data("kendoWindow").close();
+    }
+
+    //#endregion Modal Busquedas
+    /*============================================================= PANEL MODAL BUSQUEDA ==========================================================================================*/
+
+</script>

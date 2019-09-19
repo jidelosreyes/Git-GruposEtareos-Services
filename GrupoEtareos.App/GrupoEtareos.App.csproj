@@ -1,0 +1,1148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CB3D0D88-178E-4265-B90B-C632F9311ED3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrupoEtareos.App</RootNamespace>
+    <AssemblyName>GrupoEtareos.App</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <ApplicationInsightsResourceId>/subscriptions/31944807-45df-4e7f-a5fc-de795095625e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/GrupoEtareos.App</ApplicationInsightsResourceId>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EncriptarClaves, Version=1.0.3476.30998, Culture=neutral, PublicKeyToken=a563636c000f1455">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\LaCuna\inetpub\wwwroot2010\IntegraARS\bin\EncriptarClaves.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>C:\Program Files (x86)\Progress\UI for ASP.NET MVC Q3 2013\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Core.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authorization, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authorization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authorization.Policy, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.Policy.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authorization.Policy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cors, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cors.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Core.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Cors, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Cors.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.ResponseCaching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.ResponseCaching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.2.1.0\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.2.1.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.2.0\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\GruposEtareos\GrupoEtareos\GrupoEtareos.App\bin\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Contratacion\ContratacionAreaRegistration.cs" />
+    <Compile Include="Areas\Contratacion\Controllers\ContratacionController.cs" />
+    <Compile Include="Areas\GruposEtareos\Controllers\API\Ps_Grupos_EtareosController.cs" />
+    <Compile Include="Areas\GruposEtareos\Controllers\MVC\Ps_Grupos_EtareosController.cs" />
+    <Compile Include="Areas\GruposEtareos\GruposEtareosAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filter\AuthorizeUserAttribute .cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utility\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\Black\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Black\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Black\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Black\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Black\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Black\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Black\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Black\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Black\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Black\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Black\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Black\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\BlueOpal\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Bootstrap\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Default\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Default\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Default\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Default\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Default\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Default\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Default\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Default\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Default\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Default\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Default\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Default\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Flat\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\HighContrast\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\images\back.png" />
+    <Content Include="Content\kendo\2013.3.1324\images\wp8_icons.png" />
+    <Content Include="Content\kendo\2013.3.1324\images\wp8_inverseicons.png" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.black.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.blueopal.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.bootstrap.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.common-bootstrap.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.common.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.black.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.blueopal.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.bootstrap.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.default.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.flat.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.highcontrast.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.metro.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.metroblack.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.moonlight.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.silver.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.dataviz.uniform.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.default.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.flat.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.highcontrast.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.icenium.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.metro.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.metroblack.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.all.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.android4.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.blackberry.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.common.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.flat.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.icenium.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.ios.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.meego.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.mobile.wp8.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.moonlight.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.rtl.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.silver.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\kendo.uniform.min.css" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\MetroBlack\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Metro\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Moonlight\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Silver\sprite_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\brushed-metal.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots1.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots10.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots11.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots12.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots13.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots2.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots3.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots4.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots5.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots6.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots7.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots8.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\dots9.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\glass-lighter.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\glass.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\highlight.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\hsv-gradient.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\hue.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\leather1.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\leather2.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\noise.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\stripe1.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\stripe2.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\stripe3.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\stripe4.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\stripe5.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\stripe6.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\transparency.png" />
+    <Content Include="Content\kendo\2013.3.1324\textures\transtexture.png" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\editor.png" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\imagebrowser.png" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\indeterminate.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\loading-image.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\loading.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\loading_2x.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\markers.png" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\markers_2x.png" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\slider-h.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\slider-v.gif" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\sprite.png" />
+    <Content Include="Content\kendo\2013.3.1324\Uniform\sprite_2x.png" />
+    <Content Include="Content\qdata-stylos.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Imagenes\Acercade.gif" />
+    <Content Include="Imagenes\advertencia.png" />
+    <Content Include="Imagenes\Agregar.gif" />
+    <Content Include="Imagenes\ajax_loader_blue_32.gif" />
+    <Content Include="Imagenes\Amarillo.JPG" />
+    <Content Include="Imagenes\Animadas\m-glass-a.gif" />
+    <Content Include="Imagenes\Animadas\OLD_m-glass-a.gif" />
+    <Content Include="Imagenes\anular.gif" />
+    <Content Include="Imagenes\backg.gif" />
+    <Content Include="Imagenes\barraProgreso.gif" />
+    <Content Include="Imagenes\Borde1.gif" />
+    <Content Include="Imagenes\Borde2.gif" />
+    <Content Include="Imagenes\Borde4.gif" />
+    <Content Include="Imagenes\borde_der.gif" />
+    <Content Include="Imagenes\borde_inf.gif" />
+    <Content Include="Imagenes\borde_izq.gif" />
+    <Content Include="Imagenes\borde_sup.gif" />
+    <Content Include="Imagenes\browse.gif" />
+    <Content Include="Imagenes\bullet-titulo.gif" />
+    <Content Include="Imagenes\cerrrar_sesion.gif" />
+    <Content Include="Imagenes\clear.ico" />
+    <Content Include="Imagenes\DbBrkAt.gif" />
+    <Content Include="Imagenes\DbCllStk.gif" />
+    <Content Include="Imagenes\DbClrBrk.gif" />
+    <Content Include="Imagenes\DbRun.gif" />
+    <Content Include="Imagenes\DbStpIn.gif" />
+    <Content Include="Imagenes\DbStpOut.gif" />
+    <Content Include="Imagenes\down.gif" />
+    <Content Include="Imagenes\down_file.gif" />
+    <Content Include="Imagenes\edit.gif" />
+    <Content Include="Imagenes\esq_inf_der.gif" />
+    <Content Include="Imagenes\esq_inf_izq.gif" />
+    <Content Include="Imagenes\esq_sup_der.gif" />
+    <Content Include="Imagenes\esq_sup_izq.gif" />
+    <Content Include="Imagenes\EXITEMS.ICO" />
+    <Content Include="Imagenes\ffinder.gif" />
+    <Content Include="Imagenes\ffinder1.gif" />
+    <Content Include="Imagenes\ffinder1_.gif" />
+    <Content Include="Imagenes\ffinder1_1.gif" />
+    <Content Include="Imagenes\ffinder2.gif" />
+    <Content Include="Imagenes\ffinder3.gif" />
+    <Content Include="Imagenes\ffinder4.gif" />
+    <Content Include="Imagenes\Firmas\ALEJANDOCO.bmp" />
+    <Content Include="Imagenes\Firmas\ALEJANDROP.bmp" />
+    <Content Include="Imagenes\Firmas\ALINAMN.bmp" />
+    <Content Include="Imagenes\Firmas\ANASM.bmp" />
+    <Content Include="Imagenes\Firmas\CARLOSAH.bmp" />
+    <Content Include="Imagenes\Firmas\CHRISTIAND.bmp" />
+    <Content Include="Imagenes\Firmas\CMMUNOZ.bmp" />
+    <Content Include="Imagenes\Firmas\EILEENPA.bmp" />
+    <Content Include="Imagenes\Firmas\FERNEYZY.bmp" />
+    <Content Include="Imagenes\Firmas\firma1.bmp" />
+    <Content Include="Imagenes\Firmas\FirmaProvisionCobroUPC.JPG" />
+    <Content Include="Imagenes\Firmas\FREDDYVJ.bmp" />
+    <Content Include="Imagenes\Firmas\GSUAREZB.bmp" />
+    <Content Include="Imagenes\Firmas\IVANGARCIAR.bmp" />
+    <Content Include="Imagenes\Firmas\JORGEGO.bmp" />
+    <Content Include="Imagenes\Firmas\MARTHAMUNOZ.bmp" />
+    <Content Include="Imagenes\flecha.gif" />
+    <Content Include="Imagenes\FondoVencido.bmp" />
+    <Content Include="Imagenes\FORMS.ICO" />
+    <Content Include="Imagenes\gotopage.gif" />
+    <Content Include="Imagenes\groupH.ico" />
+    <Content Include="Imagenes\icon-calendar.gif" />
+    <Content Include="Imagenes\il1.gif" />
+    <Content Include="Imagenes\Imprimir.jpg" />
+    <Content Include="Imagenes\imprimir_documento.gif" />
+    <Content Include="Imagenes\integra-ars.gif" />
+    <Content Include="Imagenes\integra-ars_ARS.gif" />
+    <Content Include="Imagenes\integra-eps.gif" />
+    <Content Include="Imagenes\integra-farma.gif" />
+    <Content Include="Imagenes\integra-ips.gif" />
+    <Content Include="Imagenes\integra-magist.gif" />
+    <Content Include="Imagenes\integra-red.gif" />
+    <Content Include="Imagenes\integra-rips.gif" />
+    <Content Include="Imagenes\integra-salud.gif" />
+    <Content Include="Imagenes\integra-seguros.gif" />
+    <Content Include="Imagenes\ir1.gif" />
+    <Content Include="Imagenes\ko.gif" />
+    <Content Include="Imagenes\Lista.jpg" />
+    <Content Include="Imagenes\Loading.gif" />
+    <Content Include="Imagenes\logo-qdata.jpg" />
+    <Content Include="Imagenes\Logos\bullet-titulo.gif" />
+    <Content Include="Imagenes\Logos\imprimir.gif" />
+    <Content Include="Imagenes\Logos\imprimir_carne.gif" />
+    <Content Include="Imagenes\Logos\integra-ars.gif" />
+    <Content Include="Imagenes\Logos\integra-ars_ARS.gif" />
+    <Content Include="Imagenes\Logos\integra-eps.gif" />
+    <Content Include="Imagenes\Logos\integra-farma.gif" />
+    <Content Include="Imagenes\Logos\integra-magist.gif" />
+    <Content Include="Imagenes\Logos\integra-red.gif" />
+    <Content Include="Imagenes\Logos\integra-rips.gif" />
+    <Content Include="Imagenes\Logos\integra-salud.gif" />
+    <Content Include="Imagenes\Logos\integra-seguros.gif" />
+    <Content Include="Imagenes\Logos\logo-Emssanar.GIF" />
+    <Content Include="Imagenes\Logos\logo-proyecto.gif" />
+    <Content Include="Imagenes\Logos\logo-proyecto_caprecom.gif" />
+    <Content Include="Imagenes\Logos\logo-qdata.jpg" />
+    <Content Include="Imagenes\Logos\LogoEmpresa.bmp" />
+    <Content Include="Imagenes\Logos\logoEmpresa.gif" />
+    <Content Include="Imagenes\Logos\logoEmpresa.JPG" />
+    <Content Include="Imagenes\Logos\Logo_Empresa.JPG" />
+    <Content Include="Imagenes\Logos\Logo_EmpresaSwVencido.jpg" />
+    <Content Include="Imagenes\Logos\logo_proyecto2.gif" />
+    <Content Include="Imagenes\Logos\Logo_proyecto2.jpg" />
+    <Content Include="Imagenes\Logos\logo_proyecto2_caprecom.gif" />
+    <Content Include="Imagenes\Logos\Logo_proyecto2_caprecom.jpg" />
+    <Content Include="Imagenes\Logos\Logo_proyecto_Caprecom.bmp" />
+    <Content Include="Imagenes\Logos\Logo_Qdata_Nvo2.bmp" />
+    <Content Include="Imagenes\Logos\Logo_Qdata_Nvo2m.jpg" />
+    <Content Include="Imagenes\Logos\Supersalud.JPG" />
+    <Content Include="Imagenes\Logos\_vti_cnf\integra-ars.gif" />
+    <Content Include="Imagenes\Logos\_vti_cnf\LogoEmpresa.jpg" />
+    <Content Include="Imagenes\logo_proyecto.gif" />
+    <Content Include="Imagenes\m-glass-a.gif" />
+    <Content Include="Imagenes\mytr.gif" />
+    <Content Include="Imagenes\mytr_anexo.gif" />
+    <Content Include="Imagenes\no_fir.gif" />
+    <Content Include="Imagenes\nuevo.gif" />
+    <Content Include="Imagenes\ojopapel.jpg" />
+    <Content Include="Imagenes\ok.gif" />
+    <Content Include="Imagenes\ok_fir.gif" />
+    <Content Include="Imagenes\OOFS.ICO" />
+    <Content Include="Imagenes\orderprints.gif" />
+    <Content Include="Imagenes\plano_mytr.gif" />
+    <Content Include="Imagenes\Plantilla\backg.gif" />
+    <Content Include="Imagenes\Plantilla\quality-data.gif" />
+    <Content Include="Imagenes\Plantilla\slogan.gif" />
+    <Content Include="Imagenes\Plantilla\top.htm" />
+    <Content Include="Imagenes\Plantilla\top_2.gif" />
+    <Content Include="Imagenes\Plantilla\top_3.gif" />
+    <Content Include="Imagenes\Plantilla\top_4.gif" />
+    <Content Include="Imagenes\Plantilla\top_5.gif" />
+    <Content Include="Imagenes\Plantilla\top_6.gif" />
+    <Content Include="Imagenes\Plantilla\_vti_cnf\quality-data.gif" />
+    <Content Include="Imagenes\Plantilla\_vti_cnf\top_2.gif" />
+    <Content Include="Imagenes\Plantilla\_vti_cnf\top_4.gif" />
+    <Content Include="Imagenes\Plantilla\_vti_cnf\top_5.gif" />
+    <Content Include="Imagenes\Plantilla\_vti_cnf\top_6.gif" />
+    <Content Include="Imagenes\Previo.gif" />
+    <Content Include="Imagenes\print.gif" />
+    <Content Include="Imagenes\prog.gif" />
+    <Content Include="Imagenes\quality-data.gif" />
+    <Content Include="Imagenes\revertir.jpg" />
+    <Content Include="Imagenes\Rojo.JPG" />
+    <Content Include="Imagenes\SEARCH.GIF" />
+    <Content Include="Imagenes\slogan.gif" />
+    <Content Include="Imagenes\sombra_text.gif" />
+    <Content Include="Imagenes\star.gif" />
+    <Content Include="Imagenes\tip.gif" />
+    <Content Include="Imagenes\Titulo.gif" />
+    <Content Include="Imagenes\top.htm" />
+    <Content Include="Imagenes\top_2.gif" />
+    <Content Include="Imagenes\top_3.gif" />
+    <Content Include="Imagenes\top_4.gif" />
+    <Content Include="Imagenes\top_5.gif" />
+    <Content Include="Imagenes\top_6.gif" />
+    <Content Include="Imagenes\up.gif" />
+    <Content Include="Imagenes\user.ico" />
+    <Content Include="Imagenes\Verde.JPG" />
+    <Content Include="Imagenes\VersionVencida.jpg" />
+    <Content Include="Imagenes\_vti_cnf\integra-ars.gif" />
+    <Content Include="Imagenes\_vti_cnf\logo-qdata.jpg" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\kendo\2013.3.1324\images\kendoui.ttf" />
+    <Content Include="Content\kendo\2013.3.1324\images\kendoui.woff" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\GruposEtareos\Views\web.config" />
+    <Content Include="Areas\GruposEtareos\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GruposEtareos\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GruposEtareos\Views\Ps_Grupos_Etareos\_ItemList.cshtml" />
+    <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\GruposEtareos\Views\Ps_Grupos_Etareos\Create.cshtml" />
+    <Content Include="Areas\Contratacion\Views\Contratacion\_DatosServicios.cshtml" />
+    <Content Include="Areas\Contratacion\Views\Contratacion\_ClasificacionServicios.cshtml" />
+    <Content Include="Areas\Contratacion\Views\Contratacion\_DatosParametrizacion.cshtml" />
+    <Content Include="Areas\Contratacion\Views\web.config" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\GruposEtareos.App.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Views\Shared\AccesoDenegado.cshtml" />
+    <Content Include="Areas\Contratacion\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Contratacion\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Contratacion\Views\Contratacion\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\jquery.min.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.all-vsdoc.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.all.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.autocomplete.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.binder.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.button.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.calendar.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.colorpicker.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.columnmenu.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.combobox.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.core.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.data.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.data.odata.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.data.xml.min.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.dataviz-vsdoc.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.barcode.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.canvas.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.chart.funnel.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.chart.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.chart.polar.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.core.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.gauge.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.map.min.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.dataviz.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.qrcode.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.sparkline.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.stock.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.svg.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.themes.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.vml.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.datepicker.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.datetimepicker.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.draganddrop.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dropdownlist.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.editable.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.editor.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.filtermenu.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.fx.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.grid.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.groupable.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.imagebrowser.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.list.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.listview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.menu.min.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.mobile-vsdoc.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.actionsheet.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.application.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.button.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.buttongroup.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.drawer.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.listview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.loader.min.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.mobile.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.modalview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.navbar.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.pane.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.popover.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.scroller.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.scrollview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.shim.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.splitview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.switch.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.tabstrip.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.view.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.multiselect.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.numerictextbox.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.pager.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.panelbar.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.popup.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.progressbar.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.reorderable.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.resizable.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.router.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.agendaview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.dayview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.monthview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.recurrence.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.view.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.selectable.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.slider.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.sortable.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.splitter.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.tabstrip.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.timepicker.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.timezones.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.tooltip.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.touch.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.treeview.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.upload.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.userevents.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.validator.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.view.min.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.web-vsdoc.js" />
+    <None Include="Scripts\kendo\2013.3.1324\kendo.web.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.web.min.js" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.window.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\kendo\2013.3.1324\jquery.min.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.all.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.autocomplete.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.binder.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.button.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.calendar.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.colorpicker.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.columnmenu.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.combobox.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.core.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.data.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.data.odata.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.data.xml.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.barcode.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.canvas.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.chart.funnel.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.chart.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.chart.polar.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.core.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.gauge.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.map.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.qrcode.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.sparkline.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.stock.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.svg.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.themes.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dataviz.vml.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.datepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.datetimepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.draganddrop.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.dropdownlist.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.editable.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.editor.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.filtermenu.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.fx.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.grid.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.groupable.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.imagebrowser.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.list.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.listview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.menu.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.actionsheet.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.application.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.button.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.buttongroup.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.drawer.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.listview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.loader.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.modalview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.navbar.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.pane.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.popover.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.scroller.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.scrollview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.shim.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.splitview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.switch.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.tabstrip.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.mobile.view.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.multiselect.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.numerictextbox.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.pager.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.panelbar.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.popup.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.progressbar.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.reorderable.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.resizable.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.router.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.agendaview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.dayview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.monthview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.recurrence.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.scheduler.view.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.selectable.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.slider.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.sortable.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.splitter.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.tabstrip.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.timepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.timezones.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.tooltip.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.touch.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.treeview.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.upload.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.userevents.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.validator.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.view.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.web.min.js.map" />
+    <Content Include="Scripts\kendo\2013.3.1324\kendo.window.min.js.map" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Contratacion\Models\" />
+    <Folder Include="Areas\GruposEtareos\Models\" />
+    <Folder Include="Imagenes\Plantillas\" />
+    <Folder Include="Models\" />
+    <Folder Include="Modulos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GruposEtareos.BI\GruposEtareos.BI.csproj">
+      <Project>{6b0b4f67-0beb-4d1c-bbdc-53dbd6a64272}</Project>
+      <Name>GruposEtareos.BI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6316</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6316/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

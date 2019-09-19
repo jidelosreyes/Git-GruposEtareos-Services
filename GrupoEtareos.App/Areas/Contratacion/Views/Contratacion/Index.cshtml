@@ -1,0 +1,229 @@
+﻿@model GruposEtareos.BI.PS_SERVICIOS
+@using Kendo.Mvc.UI
+@{
+    ViewBag.Title = "Contratación / Adm Servicio";
+    var Funcionalidad = ViewBag.Editar ? "Actualizar Servicio" : "Nuevo Servicio";
+    ViewBag.Funcionalidad = Funcionalidad;
+}
+
+@using (Html.BeginForm(ViewBag.Editar ? "Edit" : "Create", "Contratacion", FormMethod.Post, new { @id = "frmAdmServicio" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="form-row tabla-datos1" id="formAdmServicios">
+        <div class="form-group col-md-12">
+            <div class="k-block k-content">
+                @Html.Label("Contratación / Adm Servicio", Funcionalidad, new { @class = "TitulosSeccion", style = "text-align: center" })
+                <div class="form-group" style="width: 2%"></div>
+                <div class="form-group col-md-11">
+                    @(Html.Partial("_DatosServicios", Model))
+                    @(Html.Partial("_ClasificacionServicios", Model))
+                    @(Html.Partial("_DatosParametrizacion", Model))
+                </div>
+                <div style="text-align: right">
+                    <br />
+                    @(Html.Kendo().Button().Name("btnDetalle_Paquete").Content("Detalle Paquete").HtmlAttributes(new { type = "submit", @style = "width: 120px", @class = "k-button" }))
+                    @(Html.Kendo()
+                        .Button()
+                        .Name("btnGrabar")
+                        .Content("Registrar")
+                        .HtmlAttributes(new { type = "submit", @style = "width: 110px", @class = "k-button" })
+                    )
+                    @Html.ActionLink("Limpiar Forma", "Index", null, new { id = "btnNuevo", @class = "k-button", @style = "font-bold: true; width: 120px" })
+                    @(Html.Kendo().Button().Name("btnRetornar").Content("<< Retornar").HtmlAttributes(new { type = "submit", @style = "width: 115px", @class = "k-button" }))
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .invalid {
+        color: red;
+        text-align: center;
+    }
+
+    .k-input {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        font-weight: normal;
+        color: #000000;
+        text-decoration: none;
+        border: 1px solid #8583A9;
+    }
+
+    .forms label {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        color: #0066CC;
+        text-decoration: none;
+    }
+</style>
+
+<script>
+    var UrlDiagnostico = '@Url.Action("CargarDiagnostico", "Contratacion", new { area = "Contratacion" })',
+        UrlGrupoEtareo = '@Url.Action("getPsGruposEtareos", "Ps_Grupos_Etareos", new { area = "GruposEtareos" })',
+        UrlCondiciones = '@Url.Action("CargarListaCondiciones", "Contratacion", new { area = "Contratacion" })',
+        UrlRegimen = '@Url.Action("CargarRegimen", "Contratacion", new { area = "Contratacion" })',
+        UrlAdminRegional = '@Url.Action("CargarListaAdmin_Regional", "Contratacion", new { area = "Contratacion" })',
+        UrlSubmitForm = '@Url.Action((ViewBag.Editar ? "Edit" : "Create"), "Contratacion", new { area = "Contratacion" })',
+        UrlEliminarDiagnostico = '@Url.Action("DeleteClasificaServicio", "Contratacion", new { area = "Contratacion" })',
+        UrlDetallePaquete = '@Url.Action("UrlServicioPaquete", "Contratacion", new { area = "Contratacion" })',
+        Editar = '@ViewBag.Editar',
+        RedirectEdit = '@ViewBag.RedirectEdit',
+        UrlReferer = '@ViewBag.UrlReferer',
+        ViewBotonesConsulta = '@ViewBag.ViewBotonesConsulta',
+        scrollTopWindow = 0;
+
+    $("#COD_EPS").val('@ViewBag.strCodigoEPS');
+    $("#COD_REGIONAL").val('@ViewBag.strCodigoRegional');
+
+    $(function () {
+        if (ViewBotonesConsulta === "True") {
+            $("#btnGrabar").hide();
+            $("#btnNuevo").hide();
+        }
+
+        $("#COD_SERVICIO").focusout(function () {
+            $.ajax({
+                url: UrlEditServicio,
+                type: 'POST',
+                dataType: "json",
+                data: {
+                    strCodigoServicio: $("#COD_SERVICIO").data("kendoAutoComplete").value(),
+                    strCodigoSubGrupo: $("#COD_SUBGRUPO").data("kendoDropDownList").value(),
+                    strCodigoGrupo: $("#COD_GRUPO").data("kendoDropDownList").value()
+                },
+                success: function (data) {
+                    if (data !== null && data !== undefined && data.length > 0) {
+                        ValidaServicioSw = false;
+                    } else {
+                        ValidaServicioSw = true;
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    ValidaServicioSw = false;
+                }
+            }).promise().then(function (data) {
+                validaServicio.validate();
+            });
+        }).ForceAlfaNumericWithPoint();
+
+        if (RedirectEdit === "True") {
+            toastr.success("Servicio actualizado exitosamente!");
+        } else if (RedirectEdit === "False") {
+            toastr.success("El servicio fué creado exitosamente!");
+        }
+
+        $("#btnGrabar").on("click", function () {
+
+            var validator = $("#frmAdmServicio").kendoValidator().data("kendoValidator");
+
+            var ValidaServicioSw = true;
+            var validaServicio = $("#dvValidarServicio").kendoValidator({
+                rules: {
+                    customServicio: function (input) {
+                        if (!ValidaServicioSw) {
+                            $(input).val() === "false";
+                            return false;
+                        }
+                        return true;
+                    }
+                },
+                messages: {
+                    customServicio: "El código de servicio que intenta crear ya existe.",
+                }
+            }).data("kendoValidator");
+
+            var validaDescripcioServicio = $("#dvDescripcionServicio").kendoValidator({
+                rules: {
+                    customDescripcionServicio: function (input) {
+                        if ($(input).val().length > 254) {
+                            $(input).val() === "false";
+                            return false;
+                        }
+                        return true;
+                    }
+                },
+                messages: {
+                    customDescripcionServicio: "La longitud de la descripción excede el máximo permitido (254).",
+                }
+            }).data("kendoValidator");
+
+            var validaObservacionServicio = $("#dvObservacionServicio").kendoValidator({
+                rules: {
+                    customObservacionServicio: function (input) {
+                        if ($(input).val().length > 254) {
+                            $(input).val() === "false";
+                            return false;
+                        }
+                        return true;
+                    }
+                },
+                messages: {
+                    customObservacionServicio: "La longitud de la observación excede el máximo permitido (254).",
+                }
+            }).data("kendoValidator");
+
+            ///ClasificacionServicio --> se carga con la información de la clasificacion del servicio, las diferentes parametrizaciones seleccionadas
+            $("#ClasificacionServicio").val(JSON.stringify(objDataClasificacion));
+
+            $("#COD_GRUPO").data("kendoDropDownList").enable(true);
+            $("#COD_SERVICIO").data("kendoAutoComplete").enable(true);
+            $("#COD_SUBGRUPO").data("kendoDropDownList").enable(true);
+
+            if ($("#ABREVIATURA").data("kendoAutoComplete").value().trim() === "") {
+                $("#ABREVIATURA").data("kendoAutoComplete").value($("#COD_SERVICIO").data("kendoAutoComplete").value().trim());
+            }
+
+            if (validator.validate() && validaServicio.validate() && validaDescripcioServicio.validate() && validaObservacionServicio.validate() && funcActualizarDCI()) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        $("#btnRetornar").on("click", function () {
+            //document.location.href = UrlReferer;
+            window.close();
+            return false;
+        });
+
+        $("#btnDetalle_Paquete").on("click", function () {
+            $.ajax({
+                url: UrlDetallePaquete,
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    strCodigoServicio: $("#COD_SERVICIO").data("kendoAutoComplete").value(),
+                    strCodigoSubGrupo: $("#COD_SUBGRUPO").data("kendoDropDownList").value(),
+                    strCodigoGrupo: $("#COD_GRUPO").data("kendoDropDownList").value(),
+                    COD_PLAN: $("#COD_SERVICIO").data("kendoAutoComplete").value(),
+                    COD_EPS: $("#COD_SUBGRUPO").data("kendoDropDownList").value(),
+                    COD_REGIONAL: $("#COD_GRUPO").data("kendoDropDownList").value(),
+                    intProceso_Origen: 1,
+                    UrlReferer: UrlReferer,
+                },
+                success: function (data) {
+                    if (data.Data != null && data.Data != null && data.Data.Ok === true) {
+                        if (data.Data.strMensaje !== "" && data.Data.strMensaje !== null && data.Data.strMensaje !== undefined) toastr.success(data.Data.strMensaje);
+                        //window.close();
+                        location.href = data.Data.strUrl;
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                }
+            });
+        });
+
+        //}).ajaxComplete(function (event, xhr, settings) {
+        //    if (xhr.status === 200 && (settings.url.indexOf("Edit") > 1 || settings.url.indexOf("Create") > 1)) {
+        //        toastr.success(Editar === 'True' ? "Servicio actualizado satisfactoriamente!" : "Servicio creado satisfactoriamente!");
+        //    }
+    });
+
+    function GrabarClick() {
+
+    }
+</script>

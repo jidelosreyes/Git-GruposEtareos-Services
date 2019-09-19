@@ -1,0 +1,193 @@
+﻿@model GruposEtareos.BI.PS_SERVICIOS
+@using Kendo.Mvc.UI
+
+<div class="form-row tabla-datos1" id="formDatosParametrizacion">
+    <div class="form-group col-md-12">
+        @Html.Label("DATOS PARAMETRIZACIÓN >>", new { @class = "TITULOS1", style = "text-align: left" })
+        <div class="form-row">
+            <div class="form-group col-md-12"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.NIVEL_AUTORIZACION, "Nivel de Autorización", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(m => m.NIVEL_AUTORIZACION)//.Name("NivelAutorizacion")
+                                .OptionLabel("Seleccione")
+                                .BindTo(ViewBag.NivelAutorizacion)
+                                .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el Nivel de Autorización", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="NIVEL_AUTORIZACION"></span>
+            </div>
+            <div class="form-group col-md-6" id="dvEdades">
+                @Html.LabelFor(m => m.EDAD_MINIMA, "Edad Mínima", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(m => m.EDAD_MINIMA)//.Name("EDAD_MINIMA")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar la edad mínima", @class = "k-textbox", style = "width: 20%;", @maxlength = "5" })
+                 )
+                <span class="k-invalid-msg col-md-3" data-for="EDAD_MINIMA"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" id="dvEdades">
+                @Html.LabelFor(m => m.EDAD_MAXIMA, "Edad Máxima", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(m => m.EDAD_MAXIMA)//.Name("EDAD_MAXIMA")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar la edad máxima", @class = "k-textbox", style = "width: 20%;", @maxlength = "5" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="EDAD_MAXIMA"></span>
+            </div>
+            <div class="form-group col-md-6" id="dvSexo">
+                @Html.LabelFor(m => m.COD_SEXO, "Sexo", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(m => m.COD_SEXO)//.Name("COD_SEXO")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.Sexo)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el sexo", style = "width: 70%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_SEXO"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.UTILIZACION_MAXIMA, "Utilización Máxima Servicio", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(m => m.UTILIZACION_MAXIMA)//.Name("UtilizacionMaximaServicio")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar la Utilización Máxima Servicio", @class = "k-textbox", style = "width: 20%;", @maxlength = "5" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="UTILIZACION_MAXIMA"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.PERIODO_UTILIZACION_MAXIMA, "Periodo(Cantidad) Máxima del Servicio", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(m => m.PERIODO_UTILIZACION_MAXIMA)//.Name("PeriodoMaximoServicio")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar el Periodo(Cantidad) Máxima del Servicio", @class = "k-textbox", style = "width: 20%;", @maxlength = "5" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="PERIODO_UTILIZACION_MAXIMA"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.MAXIMOXORDEN, "Máximo por Orden", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(m => m.MAXIMOXORDEN)//.Name("MaximoPorOrden")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar el Máximo por Ordena", @class = "k-textbox", style = "width: 20%;", @maxlength = "5" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="MAXIMOXORDEN"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.DIAS_EXPIRACION, "Días de Expiración", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoCompleteFor(m => m.DIAS_EXPIRACION)//.Name("DiasExpiracion")
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar los Días de Expiración", @class = "k-textbox", style = "width: 20%;", @maxlength = "5" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="DIAS_EXPIRACION"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" style="display: none">
+                @Html.LabelFor(m => m.AUTORIZACION_INICIAL, "Autorización Inicial", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(m => m.AUTORIZACION_INICIAL)//.Name("AutorizacionInicial")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.ListasSiNo)
+                    .HtmlAttributes(new { data_required_msg = "Debe seleccionar la Autorización Inicial", style = "width: 70%;" })
+                )
+            </div>
+            <div class="form-group col-md-6" style="display: none">
+                @Html.LabelFor(m => m.VALOR_VARIABLE, "Valor Variable", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(m => m.VALOR_VARIABLE)//.Name("ValorVariable")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.ListasSiNo)
+                    .HtmlAttributes(new { data_required_msg = "Debe seleccionar el Valor Variable", style = "width: 70%;" })
+                )
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.REVISION_DIAGNOSTICOS, "Revisión Diagnóstica", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(m => m.REVISION_DIAGNOSTICOS)//.Name("RevisionDiagnostica")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.ListasSiNo)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar la Revisión Diagnóstica", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="REVISION_DIAGNOSTICOS"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.APLICA_COPAGO, "Copago", htmlAttributes: new { @class = "control-label labels" })
+                <div class="form-check">
+                    <label class="k-checkbox-label">
+                        @if (Model.APLICA_COPAGO == null)
+                        {
+                            Model.APLICA_COPAGO = false;
+                        }
+                        @Html.CheckBoxFor(m => m.APLICA_COPAGO.Value, new { @id = "APLICA_COPAGO", Name = "APLICA_COPAGO" })
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.PROFESIONAL_AUTORIZA, "Profesional Autoriza", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(m => m.PROFESIONAL_AUTORIZA)//.Name("ProfesionalAutoriza")
+                    .OptionLabel("Seleccione")
+                    .BindTo(ViewBag.ProfesionalAutoriza)
+                    .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el profesional que autoriza", style = "width: 80%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="PROFESIONAL_AUTORIZA"></span>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.APLICA_CUOTAMODERADORA, "Cuota Moderadora", htmlAttributes: new { @class = "control-label labels" })
+                <div class="form-check">
+                    <label class="k-checkbox-label">
+                        @if (Model.APLICA_CUOTAMODERADORA == null)
+                        {
+                            Model.APLICA_CUOTAMODERADORA = false;
+                        }
+                        @Html.CheckBoxFor(m => m.APLICA_CUOTAMODERADORA.Value, new { @id = "APLICA_CUOTAMODERADORA", Name = "APLICA_CUOTAMODERADORA" })
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.EXCLUIRVALIDACION, "Excluir Validación Utilización Máxima Servicio", htmlAttributes: new { @class = "control-label labels" })
+                <div class="form-check">
+                    <label class="k-checkbox-label">
+                        @if (Model.EXCLUIRVALIDACION == null)
+                        {
+                            Model.EXCLUIRVALIDACION = false;
+                        }
+                        
+                        @Html.CheckBoxFor(m => m.EXCLUIRVALIDACION.Value, new { @id = "EXCLUIRVALIDACION", Name = "EXCLUIRVALIDACION" })
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var validatorEdades = $("#dvEdades").kendoValidator({
+            rules: {
+                customEdades: function (input) {
+                    if ($("#EDAD_MINIMA").val() !== "" && $("#EDAD_MINIMA").val() > $("#EDAD_MAXIMA").val()) {
+                        input.val() === "false";
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            messages: {
+                customEdades: "Edad mínima no puede ser mayor a la edad máxima",
+            }
+        }).data("kendoValidator");
+
+        $("span.k-dropdown").focusout(function () {
+            validatorEdades.validate();
+        });
+
+        //$("button").click(function () {
+        //    validatorEdades.validate();
+
+            
+        //    if (sw && validator.validate() && validatorEdades.validate() && validaSexo.validate() && validaUnidadMedida.validate()) {
+        //        $(this).submit();
+        //    } else {
+        //        return false;
+        //    }
+        //});
+    });
+
+</script>

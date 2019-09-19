@@ -1,0 +1,1322 @@
+﻿@model GruposEtareos.BI.PS_SERVICIOS
+@using Kendo.Mvc.UI
+
+<div class="form-row tabla-datos1" id="formClasificaServicio">
+        @Html.Hidden("ClasificacionServicio")
+        @Html.Hidden("COD_PLAN_ANT")
+        @Html.Hidden("IdClasifica")
+        @Html.HiddenFor(m => m.PS_DETALLE_SERVICIOS.FirstOrDefault().COD_EPS, new { @id = "COD_EPS", Name = "COD_EPS" })
+        @Html.HiddenFor(m => m.PS_DETALLE_SERVICIOS.FirstOrDefault().COD_REGIONAL, new { @id = "COD_REGIONAL", Name = "COD_REGIONAL" })
+    <div class="form-group col-md-12">
+        @Html.Label("CLASIFICACIÓN DEL SERVICIO >>", new { @class = "TITULOS1", style = "text-align: left" })
+        <div class="form-row">
+            <div class="form-group col-md-12"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.PS_DETALLE_SERVICIOS.FirstOrDefault().COD_PLAN, "Regimen", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownListFor(model => model.PS_DETALLE_SERVICIOS.FirstOrDefault().COD_PLAN)
+                    .OptionLabel("Seleccione")
+                    //.Placeholder("Seleccione")
+                    .BindTo(ViewBag.Regimen)//.TemplateId("<div>#: COD_PLAN#</div>")
+                                            //.Template("<span data-title='#: data.COD_PLAN #'>#: data.DESC_PLAN #</span>")
+                                            //.DataTextField("DESC_PLAN")
+                                            //.DataValueField("COD_PLAN")
+                    //.Filter("startswith")
+                    .HtmlAttributes(new { @id = "COD_PLAN", Name = "COD_PLAN", required = "required", data_required_msg = "Debe seleccionar el regimen", style = "width: 85%;" })
+                )
+                <span class="k-invalid-msg col-md-3" data-for="COD_PLAN"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                @Html.Label("POS", htmlAttributes: new { @class = "control-label labels" })
+                <div class="form-check">
+                    <label class="k-checkbox-label">
+                        @Html.CheckBox("chkPos", htmlAttributes: new { @disabled = "disabled" })
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                @Html.Label("POS Condicionado", htmlAttributes: new { @class = "control-label labels" })
+                <div class="form-check">
+                    <label class="k-checkbox-label">
+                        @Html.CheckBox("chkPosCondicionado", htmlAttributes: new { @disabled = "disabled" })
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-9" id="pnlPosCondiciones" style="display: none">
+                @Html.Label("Condiciones", htmlAttributes: new { @class = "control-label labels" })
+                <select id="Condiciones" multiple="multiple" data-placeholder="Seleccione" style="width: 80%"></select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div id="gridClasificacion" class="tabla-datos1" style="width: 40%; margin-left: 25%;"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12" id="dvDiagnostico" style="display: none">
+                @Html.Label("Diagnóstico", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownList().Name("Diagnostico")
+                    .OptionLabel("Seleccione")
+                    .HtmlAttributes(new { data_required_msg = "Debe seleccionar el diagnóstico", style = "width: 85%;" })
+                )
+                <a style="width: 5%" href="#" id="btnConsultaDiagnostico" data-role="button" class="k-button-icon">
+                    <span class="k-icon k-i-search"></span>
+                </a>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div id="gridDiagnostico" class="tabla-datos1" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12" id="dvGrupoEtareo" style="display: none">
+                @Html.Label("Grupo Etareo", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().DropDownList().Name("GrupoEtareo")
+                    .OptionLabel("Seleccione")
+                    .HtmlAttributes(new { data_required_msg = "Debe seleccionar el grupo etareo", style = "width: 85%;" })
+                )
+                <a style="width: 5%" href="#" id="btnConsultaGrupoEtareo" data-role="button" class="k-button-icon">
+                    <span class="k-icon k-i-search"></span>
+                </a>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div id="gridGruposEtareos" class="tabla-datos1" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2" id="dvCantidad" style="display: none">
+                @Html.Label("Cantidad", htmlAttributes: new { @class = "control-label labels" })
+                @(Html.Kendo().AutoComplete().Name("CANTIDAD")
+                    .HtmlAttributes(new { data_required_msg = "Debe digitar la cantidad", @class = "k-textbox", style = "width: 100%;", @maxlength = "5" })
+                )
+                <span class="k-invalid-msg" data-for="CANTIDAD"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12" id="dvMensajeInformativo" style="display: none">
+                @Html.Label("Mensaje Informativo", htmlAttributes: new { @class = "control-label labels" })
+                @Html.TextAreaFor(m => m.PS_DETALLE_SERVICIOS.FirstOrDefault().PS_POS_CONDICIONADO.MENSAJE_INFORMATIVO
+                                    , new { @id = "MENSAJE_INFORMATIVO", Name = "MENSAJE_INFORMATIVO",  data_required_msg = "Debe digitar un mensaje informativo", @maxlength = "120", @class = "k-textbox", style = "width: 85%; height: 50px" })
+                <span class="k-invalid-msg" data-for="MENSAJE_INFORMATIVO"></span>
+            </div>
+        </div>
+    </div>
+    <!--Buscador de Diagnostico-->
+    <div class="form-row tabla-datos1" style="margin-left: 0px; margin-right: 0px; width: 100%; display: none;" id="dvConsultaDiagnostico">
+        <!--Buscador de Diagnostico-->
+        <div class="form-group col-md-11">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.Label("Código Diagnóstico", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("CodDiagnostico")
+                            .HtmlAttributes(new { @class = "k-textbox", @maxlength = "18" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarDiagnosticoModal('Codigo')" id="btnCodigoBuscarDiagnostico" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.Label("Descripción Diagnóstico", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("DescDiagnostico")
+                            .HtmlAttributes(new { @style = "width: 90%", @class = "k-textbox", @maxlength = "254" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarDiagnosticoModal('Descripcion')" id="btnDescripcionBuscarDiagnostico" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div id="gridBusquedaDiagnostico" class="tabla-datos1" style="width: 100%; margin-left: 1%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Buscador de Grupo Etareo-->
+    <div class="form-row tabla-datos1" style="margin-left: 0px; margin-right: 0px; width: 100%; display: none;" id="dvConsultaGrupoEtareo">
+        <!--Buscador de Grupo Etareo-->
+        <div class="form-group col-md-11">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.Label("Código Grupo Etareo", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("CodGrupoEtareo")
+                                    .HtmlAttributes(new { @class = "k-textbox", @maxlength = "18" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarGrupoEtareoModal('Codigo')" id="btnCodigoBuscarGrupoEtareo" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.Label("Descripción Tecnología", htmlAttributes: new { @class = "control-label labels" })
+                    @(Html.Kendo().AutoComplete().Name("DescGrupoEtareo")
+                                    .HtmlAttributes(new { @style = "width: 90%", @class = "k-textbox", @maxlength = "254" })
+                    )
+                    <a style="width: 5%" href="#" onclick="ConsultarGrupoEtareoModal('Descripcion')" id="btnDescripcionBuscarGrupoEtareo" data-role="button" class="k-button-icon">
+                        <span class="k-icon k-i-search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div id="gridBusquedaGrupoEtareo" class="tabla-datos1" style="width: 100%; margin-left: 1%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var dsClasifica = @Html.Raw(Json.Encode(@ViewBag.dsClasifica));
+    var objDataGrupoEtareo = [],
+        objDataDiagnostico = [],
+        objDataClasificacion = [];
+
+
+    //Función General
+    $(function () {
+        //Clasificación POS
+        $("#chkPos").on("change", function () {
+            if (this.checked) {
+                chkPos();
+
+                ClasificacionPos("POS");
+            } else {
+                ClasificacionPos("NO POS");
+            }
+        });
+
+        //Clasificación POS Condicionado
+        $("#chkPosCondicionado").on("change", function () {
+            if (this.checked) {
+                chkPosCondicionado();
+
+                ClasificacionPos("POS Condicionado");
+            } else {
+                ClasificacionPos("NO POS");
+                
+                if ($("#gridDiagnostico").data("kendoGrid") !== undefined) {
+                    objDataDiagnostico = [];
+                    $("#gridDiagnostico").data("kendoGrid").dataSource.data(objDataDiagnostico);
+                    $("#gridDiagnostico").removeClass("k-grid k-widget k-secondary").empty();
+                }
+                if ($("#gridGruposEtareos").data("kendoGrid") !== undefined) {
+                    objDataGrupoEtareo = [];
+                    $("#gridGruposEtareos").data("kendoGrid").dataSource.data(objDataGrupoEtareo);
+                    $("#gridGruposEtareos").removeClass("k-grid k-widget k-secondary").empty();
+                }
+                
+                $("#Condiciones").data("kendoMultiSelect").value("");
+                var kendoMultiSelectList = $("#Condiciones").getKendoMultiSelect();
+                kendoMultiSelectList.trigger("change");
+
+                $("#dvDiagnostico").hide();
+                $("#dvGrupoEtareo").hide();
+                $("#dvCantidad").hide();
+                $("#pnlPosCondiciones").hide();
+                $("#dvMensajeInformativo").hide();
+            }
+        });
+
+        //Combo Regimen
+        $("#COD_PLAN").on("change", function () {
+            $("#chkPos").val(false);
+            $("#chkPos").prop("checked", false);
+            $("#chkPosCondicionado").val(false);
+            $("#chkPosCondicionado").prop("checked", false);
+            $("#Condiciones").data("kendoMultiSelect").value("");
+            $("#pnlPosCondiciones").hide();
+
+            if ($("#gridDiagnostico").data("kendoGrid") !== undefined) {
+                objDataDiagnostico = [];
+                $("#gridDiagnostico").data("kendoGrid").dataSource.data(objDataDiagnostico);
+                $("#gridDiagnostico").removeClass("k-grid k-widget k-secondary").empty();
+            }
+            if ($("#gridGruposEtareos").data("kendoGrid") !== undefined) {
+                objDataGrupoEtareo = [];
+                $("#gridGruposEtareos").data("kendoGrid").dataSource.data(objDataGrupoEtareo);
+                $("#gridGruposEtareos").removeClass("k-grid k-widget k-secondary").empty();
+            }
+
+            $("#dvDiagnostico").hide();
+            $("#dvGrupoEtareo").hide();
+            $("#dvCantidad").hide();
+
+
+            if ($("#COD_PLAN_ANT").val() !== $(this).val().toString()) {
+                $.ajax({
+                    type: "GET",
+                    url: UrlAdminRegional,
+                    data: {
+                        Cod_Plan: $(this).val().toString(),
+                        Cod_Regional: "0",
+                    },
+                    dataType: "json",
+                    //global: true,
+                    success: function (data) {
+                        if (data.length > 0) {
+                            data.filter(function (value, index) {
+                                $("#COD_EPS").val(value.COD_EPS);
+                                $("#COD_PLAN_ANT").val(value.COD_PLAN);
+                                return value;
+                            })
+                        }
+
+                        if ($("#COD_PLAN").val().toString() !== "Seleccione" && $("#COD_PLAN").val().toString() !== "") {
+                            $("#chkPos").removeAttr("disabled");
+                            $("#chkPosCondicionado").removeAttr("disabled");
+                            ClasificacionPos("NO POS");
+                        } else {                
+                            $("#chkPos").attr("disabled", "disabled");
+                            $("#chkPosCondicionado").attr("disabled", "disabled");
+                        }
+                    }
+                });
+            } else {
+                if ($(this).val().toString() !== "Seleccione" && $(this).val().toString() !== "") {
+                    $("#chkPos").removeAttr("disabled");
+                    $("#chkPosCondicionado").removeAttr("disabled");
+                    ClasificacionPos("NO POS");
+                } else {                
+                    $("#chkPos").attr("disabled", "disabled");
+                    $("#chkPosCondicionado").attr("disabled", "disabled");
+                }
+            }
+        });
+    
+        //////Combo Diagnostico var dropdownlistDiagnostico = $("#Diagnostico").kendoDropDownList({
+        //$.ajax({
+        //    url: UrlDiagnostico,
+        //    type: 'POST',
+        //    dataType: "json",
+        //    success: function(data) {
+        //        $("#Diagnostico").kendoDropDownList({
+        //            filter: "startswith",
+        //            dataTextField: "DESCR_DIAGNOSTICO",
+        //            dataValueField: "DIAGNOSTICO",
+        //            optionLabel: "Seleccione",
+        //            dataSource: data.rows,
+        //            change: changeDiagnostico
+        //        });
+        //    },
+        //    error: function (xhr, textStatus, errorThrown) {
+        //        toastr.error($.parseHTML(xhr.responseText));
+        //    }
+        //});
+
+        //Combo GrupoEtareo
+        var dropdownlistGrupoEtareo = $("#GrupoEtareo").kendoDropDownList({
+            filter: "startswith",
+            dataTextField: "DESC_GRUPOETAREO",
+            dataValueField: "ID",
+            optionLabel: "Seleccione",
+            dataSource: {
+                type: "json",
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        url: UrlGrupoEtareo,
+                        type: 'POST',
+                        data: {
+                            blEstado: true
+                        }
+                    }
+                }
+            },
+            change: changeGrupoEtareo
+        });
+
+        //Combo Condiciones
+        $("#Condiciones").kendoMultiSelect({
+            placeholder: "Seleccione",
+            dataTextField: "DESCRIPCION",
+            dataValueField: "ID",
+            optionLabel: "Seleccione",
+            autoClose: false,
+            dataSource: {
+                type: "json",
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        url: UrlCondiciones,
+                    }
+                }
+            },
+            change: onChangeCondiciones,
+        }).data("kendoMultiSelect");
+
+        //#region Check Clasificacio POS - POS Condicionado
+        /// Check Clasificacio POS - POS Condicionado
+        ///    --> En esta funcionalidad se llena el objeto "objDataClasificacion" el cual es usado
+        ///        para obtener el detalle de la clasificación del servicio con  las diferentes convinaciones que puedan llegar a generarce.
+        ///    --> Este objeto "objDataClasificacion" se usa en la funciones:
+        ///        ---> dropdownlistDiagnostico
+        ///        ---> dropdownlistGrupoEtareo
+        ///        ---> $("#CANTIDAD").on("keydown, keypress, keyup", function () {        
+        var ClasificacionPos = function (Clasificacion) {
+            var sw = true;
+            var grid;
+            if ($("#gridClasificacion").data("kendoGrid") !== undefined) {
+                grid = $("#gridClasificacion").data("kendoGrid").dataSource.data();
+
+                $.each(grid, function (index, value) {
+                    if ((value.COD_PLAN.trim() === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase().trim() !== Clasificacion.toUpperCase())) {
+                        objDataClasificacion[index].CLASIFICACION = Clasificacion;
+                        objDataClasificacion[index].Regimen = $("#COD_PLAN").data("kendoDropDownList").text().trim();
+                        objDataClasificacion[index].COD_PLAN = $("#COD_PLAN").data("kendoDropDownList").value();
+                        objDataClasificacion[index].COD_EPS = $("#COD_EPS").val();
+                        objDataClasificacion[index].COD_REGIONAL = $("#COD_REGIONAL").val();
+                        sw = false;
+                        if (Clasificacion.toUpperCase() === "POS" || Clasificacion.toUpperCase() === "NO POS") {
+                            objDataClasificacion[index].DIAGNOSTICO = null;
+                            objDataClasificacion[index].DataDiagnostico = [];
+                            objDataClasificacion[index].GRUPO_ETAREO = null;
+                            objDataClasificacion[index].DataGrupoEtareo = [];
+                            objDataClasificacion[index].CANTIDAD = null;
+                            objDataClasificacion[index].DataCantidad = "";
+                        }
+                    } else if (value.COD_PLAN.trim() === $("#COD_PLAN").data("kendoDropDownList").value()) {
+                        sw = false;
+                    }
+
+                });
+            }
+
+            if (sw) {
+                objDataClasificacion.push({
+                    IdClasifica: 0,
+                    CLASIFICACION: Clasificacion,
+                    DIAGNOSTICO: null,
+                    DataDiagnostico: [],
+                    GRUPO_ETAREO: null,
+                    DataGrupoEtareo: [],
+                    CANTIDAD: null,
+                    DataCantidad: "",
+                    Regimen: $("#COD_PLAN").data("kendoDropDownList").text().trim(),
+                    COD_PLAN: $("#COD_PLAN").data("kendoDropDownList").value(),
+                    COD_EPS: $("#COD_EPS").val(),
+                    COD_REGIONAL: $("#COD_REGIONAL").val(),
+                    Condicion: []
+                });
+            }
+
+            CreateGridClasificacion(objDataClasificacion);
+
+        }
+        //#endregion Check Clasificacio POS - POS Condicionado
+
+        //TextBox Cantidad
+        $("#CANTIDAD").on("keydown, keypress, keyup", function () {
+            $("#lnkClasificacion").hide();
+            var $this = $(this);
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataCantidad = $this.val();
+                }
+                return valueClasifica;
+            });
+        });
+                
+        if (Editar === 'True') {
+            dsClasifica.filter(function(value, index){
+                if (value.DataDiagnostico.length > 0) {
+                    var vdn = value.Condicion.filter(function(valueCondi, indexCondi){
+                        return valueCondi.DESCRIPCION === "Diagnostico";
+                    });
+                    value.DIAGNOSTICO = (vdn !== null && vdn !== undefined && vdn.length > 0 ? vdn[0].ID : null);
+                }
+                if (value.DataGrupoEtareo.length > 0) {
+                    var vdn = value.Condicion.filter(function(valueCondi, indexCondi){
+                        return valueCondi.DESCRIPCION === "Grupo Etareo";
+                    });
+                    value.GRUPO_ETAREO = (vdn !== null && vdn !== undefined && vdn.length > 0 ? vdn[0].ID : null);
+                }
+                if (value.DataCantidad !== null && value.DataCantida !== undefined && value.DataCantida.length > 0) {
+                    var vdn = value.Condicion.filter(function(valueCondi, indexCondi){
+                        return valueCondi.DESCRIPCION === "Grupo Etareo";
+                    });
+                    value.CANTIDAD = (vdn !== null && vdn !== undefined && vdn.length > 0 ? vdn[0].ID : null);
+                }
+                return value;
+            });
+            objDataClasificacion = dsClasifica;
+            CreateGridClasificacion(objDataClasificacion);
+            $(document).ajaxComplete(function(event, xhr, settings ) {
+                if (xhr.status === 200 && settings.url.indexOf("CargarListaCondiciones") > 1) {
+                    $("#lnkConsultaReg").click();
+                }
+            });
+            $("#lnkClasificacion[data-visible='clasifica']").hide();
+        }
+    });
+
+    //Ejecuta el evento change del combo de Diagnostico
+    var changeDiagnostico = function(e) {
+        var $this = (this);
+        var sw = true;
+        var grid;
+        if ($("#gridDiagnostico").data("kendoGrid") !== undefined) {
+            grid = $("#gridDiagnostico").data("kendoGrid").dataSource.data();
+
+            $.each(grid, function (index, value) {
+                if (value.DIAGNOSTICO1 === $this.dataItem(e.item).DIAGNOSTICO) {
+                    sw = false;
+                }
+            });
+        }
+
+        if ($this.dataItem(e.item).DIAGNOSTICO !== "" && sw) {
+            $("#lnkClasificacion").hide();
+            objDataDiagnostico.push({
+                DIAGNOSTICO1: $this.dataItem(e.item).DIAGNOSTICO,
+                DESCR_DIAGNOSTICO: $this.dataItem(e.item).DESCR_DIAGNOSTICO.trim(),
+                ID_PS_POS_CONDICIONADO: -1
+            });
+            $("#Diagnostico").data("kendoDropDownList").value("");
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataDiagnostico = objDataDiagnostico;
+                }
+                return valueClasifica;
+            });
+
+            CreateGridDiagnostico(objDataDiagnostico);
+            CreateGridClasificacion(objDataClasificacion);
+                    
+            grid = $('#gridClasificacion').data('kendoGrid');
+            var models = grid.dataSource.data();
+            var model= [];
+            if ($("#chkPosCondicionado")[0].checked) {
+                model = models.filter(function(value, index) {
+                    return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS CONDICIONADO";
+                }); //[models.length - 1];
+            } else {
+                model = models.filter(function(value, index) {
+                    return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS";
+                }); //[models.length - 1];
+            }
+
+            var lastRowUid = model[0].uid;
+            //$("#IdClasifica").val(model[0].IdClasifica);
+            var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+            grid.select(row);
+
+            $(".statusDG").text("").removeClass("invalid");
+        }//fin if $this.dataItem(e.item).DIAGNOSTICO !== ""
+        else {
+            //$(".statusDG").text("El Diagnóstico ya se encuentra relacionado").addClass("invalid")
+            toastr.error("El Diagnóstico ya se encuentra relacionado");
+        }
+    }
+    
+    //Ejecuta el evento change del combo de Grupo Estareo
+    var changeGrupoEtareo = function(e) {
+        var $this = (this);
+
+        var sw = true;
+        var grid;
+        if ($("#gridGruposEtareos").data("kendoGrid") !== undefined) {
+            grid = $("#gridGruposEtareos").data("kendoGrid").dataSource.data();
+
+            $.each(grid, function (index, value) {
+                if (value.ID === $this.dataItem(e.item).ID) {
+                    sw = false;
+                }
+            });
+        }
+
+        if ($this.dataItem(e.item).ID !== "" && sw) {
+            $("#lnkClasificacion").hide();
+            objDataGrupoEtareo.push({
+                ID: $this.dataItem(e.item).ID,
+                DESC_GRUPOETAREO: $this.dataItem(e.item).DESC_GRUPOETAREO.trim(),
+                ID_PS_POS_CONDICIONADO: -1
+            });
+            $("#GrupoEtareo").data("kendoDropDownList").value("");
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataGrupoEtareo = objDataGrupoEtareo;
+                }
+                return valueClasifica;
+            });
+
+            CreateGridGrupoEtareo(objDataGrupoEtareo);
+            CreateGridClasificacion(objDataClasificacion);
+                    
+            grid = $('#gridClasificacion').data('kendoGrid');
+            var models = grid.dataSource.data();
+            var model= [];
+            if ($("#chkPosCondicionado")[0].checked) {
+                model = models.filter(function(value, index){
+                    return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS CONDICIONADO";
+                }); //[models.length - 1];
+            } else {
+                model = models.filter(function(value, index){
+                    return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS";
+                }); //[models.length - 1];
+            }
+
+            var lastRowUid = model[0].uid;
+            //$("#IdClasifica").val(model[0].IdClasifica);
+            var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+            grid.select(row);
+            $(".statusGE").text("").removeClass("invalid");
+        }//fin if $this.dataItem(e.item).ID !== ""
+        else {
+            //$(".statusGE").text("El Grupo Etareo ya se encuentra relacionado").addClass("invalid")
+            toastr.error("El Grupo Etareo ya se encuentra relacionado");
+        }
+    }
+
+    //Función que ejecuta parte del evento change del control chkPos
+    function chkPos() {
+        $("#chkPosCondicionado").prop("checked", false);
+        $("#Condiciones").data("kendoMultiSelect").value("");
+        $("#pnlPosCondiciones").hide();
+
+        if ($("#gridDiagnostico").data("kendoGrid") !== undefined) {
+            objDataDiagnostico = [];
+            $("#gridDiagnostico").data("kendoGrid").dataSource.data(objDataDiagnostico);
+            $("#gridDiagnostico").removeClass("k-grid k-widget k-secondary").empty();
+        }
+        if ($("#gridGruposEtareos").data("kendoGrid") !== undefined) {
+            objDataGrupoEtareo = [];
+            $("#gridGruposEtareos").data("kendoGrid").dataSource.data(objDataGrupoEtareo);
+            $("#gridGruposEtareos").removeClass("k-grid k-widget k-secondary").empty();
+        }
+
+        $("#dvDiagnostico").hide();
+        $("#dvGrupoEtareo").hide();
+        $("#dvCantidad").hide();
+        $("#dvMensajeInformativo").hide();
+    }
+
+    //Función que ejecuta parte del evento change del control chkPosCondicionado
+    function chkPosCondicionado() {
+        $("#pnlPosCondiciones").show();
+        $("#dvMensajeInformativo").show();
+        $("#chkPos").prop("checked", false);
+    }
+
+    //Función para crear la grilla de Diagnostico cuando esta seleccionado el check de POS Condicionado
+    function CreateGridDiagnostico(paramDataDiagnostico) {
+        $("#gridDiagnostico").kendoGrid({
+            dataSource: {
+                type: 'odata',
+                pageSize: 20,
+                data: paramDataDiagnostico
+            },
+            sortable: true,
+            pageable: {
+                buttonCount: 5
+            },
+            columns: [
+                {
+                    field: "ID_PS_POS_CONDICIONADO",
+                    hidden: true
+                },
+                {
+                    field: 'DIAGNOSTICO1',
+                    title: 'Código Diagnóstico',
+                    width: 60
+                },
+                {
+                    field: 'DESCR_DIAGNOSTICO',
+                    title: 'Diagnóstico',
+                    width: 250
+                },
+                {
+                    title: '<a class="k-link" href="#">Eliminar</a>',
+                    command: {
+                        width: 20,
+                        template: "<a style='width: 5%' href='javascript:void(0);' onclick='deleteDiagnostico($(this))' data-role='button' class='k-button-icon'><span class='k-icon k-i-cancel'></span></a>",
+                    },
+                    width: 35,
+                    attributes: {
+                        style: "text-align: center;"
+                    }
+                }
+            ]
+        }).data("kendoGrid");
+    }
+
+    //Función para crear la grilla de GrupoEtareo cuando esta seleccionado el check de POS Condicionado
+    function CreateGridGrupoEtareo(paramDataGrupoEtareo) {
+        $("#gridGruposEtareos").kendoGrid({
+            dataSource: {
+                type: 'odata',
+                pageSize: 20,
+                data: paramDataGrupoEtareo
+            },
+            sortable: true,
+            pageable: {
+                buttonCount: 5
+            },
+            columns: [
+                {
+                    field: "ID_PS_POS_CONDICIONADO",
+                    hidden: true
+                },
+                {
+                    field: 'ID',
+                    title: 'Código Grupo Etareo',
+                    width: 50
+                },
+                {
+                    field: 'DESC_GRUPOETAREO',
+                    title: 'Descripción',
+                    width: 250
+                },
+                {
+                    title: '<a class="k-link" href="#">Eliminar</a>',
+                    command: {
+                        width: 20,
+                        template: "<a style='width: 5%' href='javascript:void(0);' onclick='deleteGruposEtareos($(this))' data-role='button' class='k-button-icon'><span class='k-icon k-i-cancel'></span></a>",
+                    },
+                    width: 35,
+                    attributes: {
+                        style: "text-align: center;"
+                    }
+                }
+            ]
+        }).data("kendoGrid");
+    }
+
+    //Función para crear la grilla de Clasificacion 
+    function CreateGridClasificacion(paramDataClasificacion) {
+        paramDataClasificacion.filter(function(value, index){
+            value.IdClasifica = index + 1;
+        });
+        var rowData;
+        $("#gridClasificacion").kendoGrid({
+            dataSource: {
+                type: 'json',
+                data: paramDataClasificacion,
+                schema: {
+                    model: {
+                        id: "ID",
+                    }
+                }
+            },
+            selectable: true,
+            sortable: true,
+            columns: [
+                {
+                    title: '',
+                    command: {
+                        width: 20,
+                        template: "<a id='lnkConsultaReg' style='width: 5%' href='javascript:void(0);' onclick='consultarClasificacion($(this));' data-role='button' class='k-button-icon'><span class='k-icon k-i-search'></span></a>",
+                    },
+                    width: 9,
+                    attributes: {
+                        style: "text-align: center;"
+                    }
+                },
+                {
+                    field: 'IdClasifica',
+                    title: 'IdClasifica',
+                    width: 25,
+                    hidden: true
+                },
+                {
+                    field: 'Regimen',
+                    title: 'Regimen',
+                    width: 25
+                },
+                {
+                    field: 'CLASIFICACION',
+                    title: 'Clasificación',
+                    width: 30
+                },
+                {
+                    title: '<a class="k-link" href="#">Eliminar</a>',
+                    command: {
+                        width: 20,
+                        template: "<a id='lnkClasificacion' data-visible='clasifica' style='width: 5%' href='javascript:void(0);' onclick='deleteClasificacion($(this))' data-role='button' class='k-button-icon'><span class='k-icon k-i-cancel'></span></a>",                        
+                    },
+                    width: 15,
+                    attributes: {
+                        style: "text-align: center;"
+                    }
+                }
+            ]
+        }).data("kendoGrid");
+
+        $.each(paramDataClasificacion, function (index, value) {
+            var grid = $('#gridClasificacion').data('kendoGrid');
+            var models = grid.dataSource.data().filter(function(valueGrid, indexGrid){
+                return (valueGrid.DataDiagnostico.length > 0 || valueGrid.DataGrupoEtareo.length > 0 || valueGrid.DataCantidad !== "" && valueGrid.CLASIFICACION.toUpperCase() === "POS CONDICIONADO");
+            });
+            $.each(models, function(indexM, valueM){
+                if ((models[indexM].COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value()) || (Editar === 'True')) {                
+                    var lastRowUid = models[indexM].uid;
+
+                    var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+                    grid.table.find("[data-uid=" + lastRowUid + "] a[id='lnkClasificacion']").hide();
+                } else {
+                    //$("#lnkClasificacion[data-visible='clasifica']").show();
+                }
+            });
+        });
+
+    }
+
+    //Función que elimina un item de la grilla de Diagnostico
+    function deleteDiagnostico(e) {
+        var row = e.select().closest("tr");
+        var grid = $('#gridDiagnostico').data('kendoGrid');
+        var dataItem = grid.dataItem(row);
+        
+        if (Editar === 'True' && dataItem.ID_PS_POS_CONDICIONADO !== -1){
+            $.ajax({
+                url: UrlEliminarDiagnostico,
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    codServicio: $("#COD_SERVICIO").data("kendoAutoComplete").value(),
+                    codGrupo: $("#COD_GRUPO").data("kendoDropDownList").value(),
+                    codSubGrupo: $("#COD_SUBGRUPO").data("kendoDropDownList").value(),
+                    ID_PS_POS_CONDICIONADO: dataItem.ID_PS_POS_CONDICIONADO,
+                    funcCall: "Diagnóstico"
+                },
+                success: function(data) {
+                    if (data.Data != null && data.Data != null && data.Data.Ok === true) {
+                        //toastr.options = { 
+                        //    "positionClass": "toast-top-right", 
+                        //};
+                        toastr.success(data.Data.Message);
+                        ActualizaEliminarDiagnostico(dataItem, grid);
+                    } else {
+                        //toastr.options = { 
+                        //    "positionClass": "toast-top-center", 
+                        //};
+                        toastr.error(data.Data.Message);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //toastr.options = { 
+                    //    "positionClass": "toast-top-center", 
+                    //};
+                    toastr.error($.parseHTML(xhr.responseText));
+                }
+            });
+        } else {
+            ActualizaEliminarDiagnostico(dataItem, grid);
+        }
+    }
+
+    function ActualizaEliminarDiagnostico(dataItem, grid) {
+        grid.dataSource.remove(dataItem);
+        grid.dataSource.sync();
+
+        for (var i = 0; i < objDataDiagnostico.length; i++) {
+            if (objDataDiagnostico[i].DIAGNOSTICO1 === dataItem.DIAGNOSTICO1) {
+                objDataDiagnostico.splice(i, 1);
+                $("#Diagnostico").data("kendoDropDownList").value("");
+            }
+        }
+
+        if (objDataDiagnostico.length <= 0) {
+            $("#gridDiagnostico").removeClass("k-grid k-widget k-secondary").empty();
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataDiagnostico = [];
+                }
+                return valueClasifica;
+            });
+        }
+        
+        if (objDataDiagnostico.length <= 0 && objDataGrupoEtareo.length <= 0) {
+            $("#lnkClasificacion").show();
+        }
+
+        CreateGridClasificacion(objDataClasificacion);
+        
+        var grid = $('#gridClasificacion').data('kendoGrid');
+        var models = grid.dataSource.data();
+
+        var model= [];
+        if ($("#chkPosCondicionado")[0].checked) {
+            model = models.filter(function(value, index){
+                return value.IdClasifica.toString() === $("#IdClasifica").val();
+            }); //[models.length - 1];
+        } else {
+            model = models.filter(function(value, index){
+                return value.IdClasifica.toString() === $("#IdClasifica").val();
+            }); //[models.length - 1];
+        }
+
+        var lastRowUid = (model !== null && model !== undefined && model.length > 0 ) ? model[0].uid : "";
+
+        var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+        grid.select(row);
+        //return false;
+    }
+
+    //Función que elimina un item de la grilla de Grupos Etareos
+    function deleteGruposEtareos(e) {
+        var row = e.select().closest("tr");
+        var grid = $('#gridGruposEtareos').data('kendoGrid');
+        var dataItem = grid.dataItem(row);
+        
+        if (Editar === 'True' && dataItem.ID_PS_POS_CONDICIONADO !== -1){
+            $.ajax({
+                url: UrlEliminarDiagnostico,
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    codServicio: $("#COD_SERVICIO").data("kendoAutoComplete").value(),
+                    codGrupo: $("#COD_GRUPO").data("kendoDropDownList").value(),
+                    codSubGrupo: $("#COD_SUBGRUPO").data("kendoDropDownList").value(),
+                    ID_PS_POS_CONDICIONADO: dataItem.ID_PS_POS_CONDICIONADO,
+                    funcCall: "Grupo Etareo",
+                },
+                success: function(data) {
+                    if (data.Data != null && data.Data != null && data.Data.Ok === true) {
+                        toastr.success(data.Data.Message);
+                        ActualizaEliminarGrupoEtareo(dataItem, grid);
+                    } else {
+                        toastr.error(data.Data.Message);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    toastr.error($.parseHTML(xhr.responseText));
+                }
+            });
+        } else {
+            ActualizaEliminarGrupoEtareo(dataItem, grid);
+        }
+    }
+
+    function ActualizaEliminarGrupoEtareo(dataItem, grid){
+        grid.dataSource.remove(dataItem);
+        grid.dataSource.sync();
+
+        for (var i = 0; i < objDataGrupoEtareo.length; i++) {
+            if (objDataGrupoEtareo[i].ID === dataItem.ID) {
+                objDataGrupoEtareo.splice(i, 1);
+                $("#GrupoEtareo").data("kendoDropDownList").value("");
+            }
+        }
+
+        if (objDataGrupoEtareo.length <= 0) {
+            $('#gridGruposEtareos').removeClass("k-grid k-widget k-secondary").empty();
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataGrupoEtareo = [];
+                }
+                return valueClasifica;
+            });
+        } else {
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataGrupoEtareo = objDataGrupoEtareo;
+                }
+                return valueClasifica;
+            });
+        }
+
+        if (objDataDiagnostico.length <= 0 && objDataGrupoEtareo.length <= 0) {
+            $("#lnkClasificacion").show();
+        }
+
+        CreateGridClasificacion(objDataClasificacion);
+        
+        grid = $('#gridClasificacion').data('kendoGrid');
+        var models = grid.dataSource.data();
+        var model= [];
+        if ($("#chkPosCondicionado")[0].checked) {
+            model = models.filter(function(value, index){
+                return value.IdClasifica.toString() === $("#IdClasifica").val();
+            }); //[models.length - 1];
+        } else {
+            model = models.filter(function(value, index){
+                return value.IdClasifica.toString() === $("#IdClasifica").val();
+            }); //[models.length - 1];
+        }
+
+        var lastRowUid = (model !== null && model !== undefined && model.length > 0 ) ? model[0].uid : "";
+        var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+        grid.select(row);
+    }
+
+    //Función que elimina un item de la grilla de Clasificacion POS y POS Condicionado
+    function deleteClasificacion(e) {
+        var row = e.select().closest("tr");
+        var grid = $('#gridClasificacion').data('kendoGrid');
+        var dataItem = grid.dataItem(row);
+        grid.dataSource.remove(dataItem);
+        grid.dataSource.sync();
+
+        for (var i = 0; i < objDataClasificacion.length; i++) {
+            if (objDataClasificacion[i].IdClasifica === dataItem.IdClasifica) {
+                objDataClasificacion.splice(i, 1);
+            }
+        }
+
+        if (objDataClasificacion.length <= 0) {
+            $('#gridClasificacion').removeClass("k-grid k-widget k-secondary").empty();
+            chkPosCondicionado();
+            chkPos();
+        } else {
+            //$("#COD_PLAN").val(objDataClasificacion[0].COD_PLAN).data("kendoDropDownList").value(objDataClasificacion[0].COD_PLAN);
+            chkPos();
+        }
+        
+        grid = $('#gridClasificacion').data('kendoGrid');
+        var models = grid.dataSource.data();
+        var model= [];
+        if ($("#chkPosCondicionado")[0].checked) {
+            model = models.filter(function(value, index){
+                return value.IdClasifica.toString() === $("#IdClasifica").val();
+            }); //[models.length - 1];
+        } else {
+            model = models.filter(function(value, index){
+                return value.IdClasifica.toString() === $("#IdClasifica").val();
+            }); //[models.length - 1];
+        }
+
+        if ((model !== null && model !== undefined && model.length > 0)){
+            var lastRowUid = (model !== null && model !== undefined && model.length > 0) ? model[0].uid : "";
+            var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+            grid.select(row);
+        } else {
+        }
+
+        //return false;
+    }
+
+    //Función que consulta un item de la grilla de Clasificacion POS y POS Condicionado
+    function consultarClasificacion(e) {
+        var row = e.select().closest("tr");
+        var grid = $('#gridClasificacion').data('kendoGrid');
+        var dataItem = grid.dataItem(row);
+
+        $("#IdClasifica").val(dataItem.IdClasifica);
+        $("#COD_PLAN").val(dataItem.COD_PLAN).data("kendoDropDownList").value(dataItem.COD_PLAN);
+        if (dataItem !== undefined && dataItem.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+            $("#chkPosCondicionado").prop("checked", true);
+            chkPosCondicionado();
+
+            var Diagnostico = dataItem.DIAGNOSTICO !== null ? dataItem.DIAGNOSTICO.toString() : null;
+            var GrupoEstareo = dataItem.GRUPO_ETAREO !== null ? dataItem.GRUPO_ETAREO.toString() : null;
+            var Cantidad = dataItem.CANTIDAD !== null ? dataItem.CANTIDAD.toString() : null;
+            $("#Condiciones").data("kendoMultiSelect").value([Diagnostico, GrupoEstareo, Cantidad]);
+            
+            if (dataItem.DataDiagnostico.length > 0) { 
+                if (Editar === 'True')
+                    objDataDiagnostico =  dataItem.DataDiagnostico;
+                CreateGridDiagnostico(dataItem.DataDiagnostico); 
+                $("#lnkClasificacion").hide();
+            }
+            if (dataItem.DataGrupoEtareo.length > 0) {   
+                if (Editar === 'True')
+                    objDataGrupoEtareo =  dataItem.DataGrupoEtareo;
+                CreateGridGrupoEtareo(dataItem.DataGrupoEtareo);  
+                $("#lnkClasificacion").hide();
+            }
+            if (Cantidad !== null)
+                $("#lnkClasificacion").hide();
+            
+            //onChangeCondiciones();
+            var kendoMultiSelectList = $("#Condiciones").getKendoMultiSelect();
+            kendoMultiSelectList.trigger("change");
+        } else {
+            $("#chkPos").prop("checked", true);
+            chkPos();
+        }
+        
+        grid = $('#gridClasificacion').data('kendoGrid');
+        var models = grid.dataSource.data();
+        var model= [];
+        if ($("#chkPosCondicionado")[0].checked) {
+            model = models.filter(function(value, index){
+                return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS CONDICIONADO";
+            }); //[models.length - 1];
+        } else {
+            model = models.filter(function(value, index){
+                return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS";
+            }); //[models.length - 1];
+        }
+
+        var lastRowUid = model[0].uid;
+        var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+        grid.select(row);
+        //return false;
+    }
+
+    //Función cuando se selecciona un item del control $("#Condiciones")
+    function onChangeCondiciones(e) {
+        var swDiag = false, swGe = false, swCant = false;
+        $.each($("#Condiciones").data("kendoMultiSelect").value(), function (index, value) {
+            switch (value) {
+                case 1:
+                    $("#dvDiagnostico").show();
+                    swDiag = true;
+                    objDataClasificacion.filter(function (valueClasifica, name) {
+                        if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                            valueClasifica.DIAGNOSTICO = value;
+                        }
+                        return valueClasifica;
+                    });
+                    break;
+                case 2:
+                    $("#dvGrupoEtareo").show();
+                    swGe = true;
+                    objDataClasificacion.filter(function (valueClasifica, name) {
+                        if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                            valueClasifica.GRUPO_ETAREO = value;
+                        }
+                        return valueClasifica;
+                    });
+                    break;
+                case 3:
+                    $("#dvCantidad").show();
+                    swCant = true;
+                    objDataClasificacion.filter(function (valueClasifica, name) {
+                        if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                            valueClasifica.CANTIDAD = value;
+                        }
+                        return valueClasifica;
+                    });
+                    break;
+            }
+        });
+        if (!swDiag) {
+            $("#Diagnostico").data("kendoDropDownList").value("");
+            if ($("#gridDiagnostico").data("kendoGrid") !== undefined) {
+                objDataDiagnostico = [];
+                $("#gridDiagnostico").data("kendoGrid").dataSource.data(objDataDiagnostico);
+                $("#gridDiagnostico").removeClass("k-grid k-widget k-secondary").empty();
+            }
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataDiagnostico = [];
+                    valueClasifica.DIAGNOSTICO = null;
+                }
+                return valueClasifica;
+            });
+            $("#dvDiagnostico").hide();
+        }
+        if (!swGe) {
+            $("#GrupoEtareo").data("kendoDropDownList").value("");
+            if ($("#gridGruposEtareos").data("kendoGrid") !== undefined) {
+                objDataGrupoEtareo = [];
+                $("#gridGruposEtareos").data("kendoGrid").dataSource.data(objDataGrupoEtareo);
+                $("#gridGruposEtareos").removeClass("k-grid k-widget k-secondary").empty();
+            }
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataGrupoEtareo = [];
+                    valueClasifica.GRUPO_ETAREO = null;
+                }
+                return valueClasifica;
+            });
+            $("#dvGrupoEtareo").hide();
+        }
+        if (!swCant) {
+            $("#CANTIDAD").val("");
+            objDataClasificacion.filter(function (valueClasifica, name) {
+                if (valueClasifica.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && valueClasifica.CLASIFICACION.toUpperCase() === "POS CONDICIONADO") {
+                    valueClasifica.DataCantidad = "";
+                    valueClasifica.CANTIDAD = null;
+                }
+                return valueClasifica;
+            });
+            $("#dvCantidad").hide();
+        }
+        CreateGridClasificacion(objDataClasificacion);
+        
+        grid = $('#gridClasificacion').data('kendoGrid');
+        var models = grid.dataSource.data();
+        var model= [];
+        if ($("#chkPosCondicionado")[0].checked) {
+            model = models.filter(function(value, index){
+                return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS CONDICIONADO";
+            }); //[models.length - 1];
+        } else {
+            model = models.filter(function(value, index){
+                return value.COD_PLAN === $("#COD_PLAN").data("kendoDropDownList").value() && value.CLASIFICACION.toUpperCase() === "POS";
+            }); //[models.length - 1];
+        }
+
+        if (model.length > 0){
+            var lastRowUid = model[0].uid;
+            $("#IdClasifica").val(model[0].IdClasifica);
+            var row = grid.table.find("[data-uid=" + lastRowUid + "]");
+            grid.select(row);
+        }
+    }
+
+    /*============================================================= PANEL MODAL BUSQUEDA ==========================================================================================*/
+    //#region Modal Busquedas
+    
+    ///Funcion que se ejecuta cuando se presiona click en los botones de lupa por descripcion o codigo del modal de busqueda por Diagnóstico
+    var ConsultarDiagnosticoModal = function (tipoBusqueda) {
+        if (tipoBusqueda === "Descripcion") {
+            $("#CodDiagnostico").val("");
+        } else {
+            $("#DescDiagnostico").val("");
+        }
+
+        var columns = [
+            {
+                title: '',
+                command: {
+                    width: 20,
+                    template: "<a id='lnkConsultaReg' style='width: 5%' href='javascript:void(0);' onclick='SeleccionarGridModalClasificaServicio($(this));' data-role='button' "
+                              + "data-grid-name='gridBusquedaDiagnostico' data-div-modal-name='dvConsultaDiagnostico' data-load-combo='DIAGNOSTICO' "
+                              + "class='k-button-icon'><span class='k-icon k-i-search' style='margin-left: -60%;'></span></a>",
+                },
+                width: 15,
+                attributes: {
+                    style: "text-align: center;"
+                }
+            },
+            {
+                field: 'DIAGNOSTICO',
+                title: 'Código Diagnóstico',
+                width: 60,
+                hidden: false
+            },
+            {
+                field: 'DESCR_DIAGNOSTICO',
+                title: 'Descripción Diagnóstico',
+                width: 250
+            },
+        ];
+
+        $.ajax({
+            url: UrlDiagnostico,
+            type: 'GET',
+            dataType: "json",
+            data: {
+                strCodDiagnostico: $("#CodDiagnostico").val(),
+                strDescrDiagnostico: $("#DescDiagnostico").val(),
+            },
+            success: function (data) {
+                if (data != null && data.rows != null && data.rows.length > 0) {
+                    CreateGridBusqueda(data.rows, columns, $("#gridBusquedaDiagnostico"), $("#dvConsultaDiagnostico"), scrollTopWindow);
+                } else {
+                    toastr.info("No hay resultados para la opción de busqueda seleccionada, favor intente nuevamente");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr.error($.parseHTML(xhr.responseText));
+            }
+        });
+    }
+
+    ///Abre el modal de busqueda por Diagnóstico
+    $("#btnConsultaDiagnostico").on("click", function () {
+        scrollTopWindow = $(window).scrollTop();
+        funcOpenModal("Busqueda por Diagnóstico", $("#dvConsultaDiagnostico"), $("#gridBusquedaDiagnostico"), $("#CodDiagnostico"), $("#DescDiagnostico"));
+        return false;
+    });
+
+    ///Funcion que se ejecuta cuando se presiona click en los botones de lupa por descripcion o codigo del modal de busqueda por Grupo Etareo
+    var ConsultarGrupoEtareoModal = function (tipoBusqueda) {
+        if (tipoBusqueda === "Descripcion") {
+            $("#CodGrupoEtareo").val("");
+        } else {
+            $("#DescGrupoEtareo").val("");
+        }
+
+        var columns = [
+            {
+                title: '',
+                command: {
+                    width: 20,
+                    template: "<a id='lnkConsultaReg' style='width: 5%' href='javascript:void(0);' onclick='SeleccionarGridModalClasificaServicio($(this));' data-role='button' "
+                              + "data-grid-name='gridBusquedaGrupoEtareo' data-div-modal-name='dvConsultaGrupoEtareo' data-load-combo='ID' "
+                              + "class='k-button-icon'><span class='k-icon k-i-search' style='margin-left: -60%;'></span></a>",
+                },
+                width: 15,
+                attributes: {
+                    style: "text-align: center;"
+                }
+            },
+            {
+                field: 'ID',
+                title: 'Código Grupo Etareo',
+                width: 60,
+                hidden: false
+            },
+            {
+                field: 'DESC_GRUPOETAREO',
+                title: 'Descripción',
+                width: 250
+            },
+        ];
+
+        $.ajax({
+            url: UrlGrupoEtareo,
+            type: 'POST',
+            dataType: "json",
+            data: {
+                strCodGrupoEtareo: $("#CodGrupoEtareo").val(),
+                strDescGrupoEtareo: $("#DescGrupoEtareo").val(),
+                blEstado: true,
+            },
+            success: function (data) {
+                if (data != null && data != null && data.length > 0) {
+                    CreateGridBusqueda(data, columns, $("#gridBusquedaGrupoEtareo"), $("#dvConsultaGrupoEtareo"), scrollTopWindow);
+                } else {
+                    toastr.info("No hay resultados para la opción de busqueda seleccionada, favor intente nuevamente");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr.error($.parseHTML(xhr.responseText));
+            }
+        });
+    }
+
+    ///Abre el modal de busqueda por Grupo Etareo
+    $("#btnConsultaGrupoEtareo").on("click", function () {
+        console.log("top: ",$(window).scrollTop())
+        scrollTopWindow = $(window).scrollTop();
+        funcOpenModal("Busqueda por Grupo Etareo", $("#dvConsultaGrupoEtareo"), $("#gridBusquedaGrupoEtareo"), $("#CodGrupoEtareo"), $("#DescGrupoEtareo"));
+        return false;
+    });
+    
+    //Función para seleccionar un item de la grilla de los modal del busqueda.
+    function SeleccionarGridModalClasificaServicio(e) {
+        var row = e.select().closest("tr");
+        var gridName = e.attr("data-grid-name");
+        var divModalName = e.attr("data-div-modal-name");
+        var fieldLoadModal = e.attr("data-load-combo");
+        var grid = $('#' + gridName).data('kendoGrid');
+        var dataItem = grid.dataItem(row);
+        var dropDownList = null;
+
+        if (fieldLoadModal === "ID") {
+            $("#GrupoEtareo").val(dataItem.ID).data("kendoDropDownList").value(dataItem.ID);
+            dropDownList = $("#GrupoEtareo").getKendoDropDownList();
+            dropDownList.trigger("change");
+        } else if (fieldLoadModal === "DIAGNOSTICO") {
+            $("#Diagnostico").val(dataItem.DIAGNOSTICO).data("kendoDropDownList").value(dataItem.DIAGNOSTICO);
+            dropDownList = $("#Diagnostico").getKendoDropDownList();
+            dropDownList.trigger("change");
+        }
+
+        $("#" + divModalName).data("kendoWindow").close();
+    }
+
+    //endregion Modal Busquedas
+    /*============================================================= PANEL MODAL BUSQUEDA ==========================================================================================*/
+
+</script>

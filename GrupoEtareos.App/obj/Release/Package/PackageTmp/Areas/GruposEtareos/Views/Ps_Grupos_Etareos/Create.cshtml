@@ -1,0 +1,235 @@
+﻿@model GruposEtareos.BI.PS_GRUPOS_ETAREOS
+@using Kendo.Mvc.UI
+
+@using (Html.BeginForm(ViewBag.Edit ? "Edit" : "Create", "Ps_Grupos_Etareos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row tabla-datos1" id="formParametricaGE">
+        @Html.HiddenFor(model => model.ID) 
+        @Html.HiddenFor(model => model.COD_USUARIO)        
+        <div class="form-group col-md-12">
+            <div class="k-block k-content">
+                @Html.Label("PARAMETRIZACIÓN DEL GRUPO ETAREO", new { @class= "TitulosSeccion", style="text-align: center" })
+                <div id="dvValidaCreate">
+                    <p class="status">
+                    </p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.DESC_GRUPOETAREO, "Descripción", htmlAttributes: new { @class = "control-label labels" })
+                        @(Html.Kendo().AutoCompleteFor(model => model.DESC_GRUPOETAREO).DataTextField("DESC_GRUPOETAREO").DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("getPsGruposEtareos", "Ps_Grupos_Etareos").Type(HttpVerbs.Post);
+                                    
+                                })
+                                .ServerFiltering(false);
+                            })
+                            .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar la descripción del grupo etareo", style = "width: 100%" }))
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.ESTADO_GRUPOETAREO, "Habilitar Grupo Etareo", htmlAttributes: new { @class = "control-label labels" })
+                        <div class="form-check">
+                            <label class="k-checkbox-label">
+                                @Html.CheckBoxFor(model => model.ESTADO_GRUPOETAREO)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-2" id="dvSexo">
+                        @Html.LabelFor(model => model.COD_SEXO, "Sexo", htmlAttributes: new { @class = "control-label labels" })
+                        @(Html.Kendo().DropDownListFor(model => model.COD_SEXO)
+                                .OptionLabel("Seleccione")
+                                .BindTo(ViewBag.Sexo)
+                                .HtmlAttributes(new { required = "required", data_required_msg = "Debe seleccionar el sexo" })
+                        )
+                        <span class="k-invalid-msg  col-md-3" data-for="COD_SEXO"></span>
+                    </div>
+                    <div class="form-group col-md-2" id="dvEdades">
+                        @Html.LabelFor(model => model.EDAD_MINIMA, "Edad Mínima", htmlAttributes: new { @class = "control-label labels" })
+                        @(Html.Kendo().AutoCompleteFor(model => model.EDAD_MINIMA)
+                                .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar la edad mínima", style = "width: 100%;", @maxlength = "5" }))
+                        <span class="k-invalid-msg" data-for="EDAD_MINIMA"></span>
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.EDAD_MAXIMA, "Edad Máxima", htmlAttributes: new { @class = "control-label labels" })
+                        @(Html.Kendo().AutoCompleteFor(model => model.EDAD_MAXIMA)
+                                .HtmlAttributes(new { required = "required", data_required_msg = "Debe digitar la edad máxima", style = "width: 100%", @maxlength = "5" }))
+                        <span class="k-invalid-msg" data-for="EDAD_MAXIMA"></span>
+                    </div>
+                    <div class="form-group col-md-4" id="dvUnidadMedida">
+                        @Html.LabelFor(model => model.ID_UNIDADMEDIDA, "Unidad de Medida", htmlAttributes: new { @class = "control-label labels" })
+                        @(Html.Kendo().DropDownListFor(model => model.ID_UNIDADMEDIDA)
+                                .OptionLabel("Seleccione")
+                                .HtmlAttributes(new { required = "required", data_required_msg = "Seleccione la unidad de medida" })
+                                .BindTo(ViewBag.UnidadMedida)
+                        )
+                        <span class="k-invalid-msg" data-for="ID_UNIDADMEDIDA"></span>
+                    </div>
+                </div>
+
+                <div style="text-align: right">
+                    @(Html.Kendo().Button().Name("btnGrabar").Content("Grabar").HtmlAttributes(new { type = "submit" }))
+                    @Html.ActionLink("Nuevo", "Index", null, new { id = "btnNuevo", @class = "k-button", @style = "font-bold: true" })
+                    @(Html.Kendo().Button().Name("btnActualizar").Content("Actualizar").HtmlAttributes(new { type = "submit" }))
+                    @(Html.Kendo().Button().Name("btnRetornar").Content("<< Retornar").HtmlAttributes(new { type = "submit", @style = "width: 115px", @class = "k-button" }))
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@(Html.Partial("_ItemList", (IEnumerable<GruposEtareos.BI.PS_GRUPOS_ETAREOS>)ViewBag.Ps_Grupos_Etareos))
+
+<style>
+    .invalid
+    {
+        color: red;
+        text-align: center;
+    }
+    
+    .k-input {
+	    font-family: Verdana, Arial, Helvetica, sans-serif;
+	    font-size: 10px;
+	    font-weight: normal;
+	    color: #000000;
+	    text-decoration: none;
+	    border: 1px solid #8583A9;
+    }
+    .k-button {
+	    font-family: Verdana, Arial, Helvetica, sans-serif;
+	    font-size: 10px;
+	    font-weight: bold;
+	    color: #333333;
+	    text-decoration: none;
+	    background-color: #D2DDEE;
+	    border: 1px solid #000000;
+	    text-transform:capitalize;
+	    text-align:center;
+	    width: 90px;
+	    height: 25px;
+    }
+    .forms label {
+	    font-family: Verdana, Arial, Helvetica, sans-serif;
+	    font-size: 10px;
+	    font-weight: bold;
+	    color: #0066CC;
+	    text-decoration: none;
+    }
+</style>
+
+<script>
+    $(function () {
+
+        var validator = $("#formParametricaGE").kendoValidator().data("kendoValidator");
+
+        var validaSexo = $("#dvSexo").kendoValidator({
+            rules: {
+                customSexo: function (input) {
+                    if ($(input).val() === "Seleccione") {
+                        $(input).val() === "false";
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            messages: {
+                customSexo: "Debe seleccionar el sexo",
+            }
+        }).data("kendoValidator");
+
+        var validatorEdades = $("#dvEdades").kendoValidator({
+            rules: {
+                customEdades: function (input) {
+                    if ($("#EDAD_MINIMA").val() !== "" && $("#EDAD_MINIMA").val() > $("#EDAD_MAXIMA").val()) {
+                        input.val() === "false";
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            messages: {
+                customEdades: "Edad mínima no puede ser mayor a la edad máxima",
+            }
+        }).data("kendoValidator");
+
+        var validaUnidadMedida = $("#dvUnidadMedida").kendoValidator({
+            rules: {
+                customSexo: function (input) {
+                    if ($(input).val() === "Seleccione") {
+                        $(input).val() === "false";
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            messages: {
+                customSexo: "Seleccione la unidad de medida",
+            }
+        }).data("kendoValidator");
+
+        if ('@ViewBag.Edit' === "True") {
+            $("#btnGrabar").kendoButton({ enable: false });
+            $("#btnActualizar").kendoButton({ enable: true });
+        } else {
+            $("#btnGrabar").kendoButton({ enable: true });
+            $("#btnActualizar").kendoButton({ enable: false });
+            $("#COD_SEXO").val("Seleccione");
+            $("#ID_UNIDADMEDIDA").val("Seleccione");
+        }
+
+        $("#EDAD_MINIMA").focusout(function () {
+            validatorEdades.validate();
+        }).ForceNumericOnly();
+
+        $("#EDAD_MAXIMA").focusout(function () {
+            validatorEdades.validate();
+        }).ForceNumericOnly();
+
+        $("span.k-dropdown").focusout(function () {
+            validator.validate();
+            validaSexo.validate();
+            validaUnidadMedida.validate();
+        });
+
+        $("button").click(function () {
+            validator.validate();
+            validatorEdades.validate();
+            validaSexo.validate();
+            validaUnidadMedida.validate();
+
+            var sw = true;
+            var grid = $("#grid").data("kendoGrid").dataSource.data();
+
+            $.each(grid, function (index, value) {
+                if (value.COD_SEXO === $("#COD_SEXO").val() && value.ID.toString() !== $("#ID").val()
+                    && value.EDAD_MINIMA.toString() === $("#EDAD_MINIMA").val()
+                    && value.EDAD_MAXIMA.toString() === $("#EDAD_MAXIMA").val()
+                    && value.ID_UNIDADMEDIDA.toString() === $("#ID_UNIDADMEDIDA").val()) {
+                    sw = false;
+                }
+            });
+
+            if (sw && validator.validate() && validatorEdades.validate() && validaSexo.validate() && validaUnidadMedida.validate()) {
+                return true;
+            } else {
+                if (!sw)
+                    //$(".status").text("Ya existe Grupo Etareo con estas características").addClass("invalid")
+                    toastr.info("Ya existe Grupo Etareo con estas características");
+                //else $(".status").text("").removeClass("invalid");
+                return false;
+            }
+        });
+
+        $("#btnRetornar").on("click", function () {
+            //document.location.href = UrlReferer;
+            window.close();
+            return false;
+        });
+    });
+</script>

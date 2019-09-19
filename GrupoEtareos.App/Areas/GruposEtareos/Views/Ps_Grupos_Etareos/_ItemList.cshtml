@@ -1,0 +1,110 @@
+﻿@*@model IEnumerable<GruposEtareos.BI.PS_GRUPOS_ETAREOS>
+@using Kendo.Mvc.UI*@
+
+<div class="form-row">
+    <div class="form-group col-md-12">
+        @*@(Html.Kendo().Grid<GruposEtareos.BI.PS_GRUPOS_ETAREOS>()//((IEnumerable<GruposEtareos.BI.PS_GRUPOS_ETAREOS>)ViewBag.Ps_Grupos_Etareos)
+                .Name("grid")
+                .Columns(columns =>
+                {
+                //columns.Command(command => { command.Edit().Text("ID"); });
+                columns.Bound(d => d.ID).Template(@<text>
+                            @Html.ActionLink(@item.ID.ToString(), "Edit", new { id = @item.ID })
+                        </text>).Title("Código").HeaderHtmlAttributes(new { style = "text-align: center" });//.ClientTemplate("<a href='#'>#=ID#</a>");
+                    columns.Bound(d => d.DESC_GRUPOETAREO).Title("Descripción").HeaderHtmlAttributes(new { style = "text-align: center" });
+                    columns.Bound(d => d.EDAD_MINIMA).Title("Edad Mínima").HeaderHtmlAttributes(new { style = "text-align: center" });
+                    columns.Bound(d => d.EDAD_MAXIMA).Title("Edad Máxima").HeaderHtmlAttributes(new { style = "text-align: center" });
+                    columns.Bound(d => d.SEXO.DESC_SEXO).Title("Sexo").HeaderHtmlAttributes(new { style = "text-align: center" });
+                    columns.Bound(d => d.GN_UNIDAD_MEDIDA.DESC_UNIDADMEDIDA).Title("Unidad de Medida").HeaderHtmlAttributes(new { style = "text-align: center" });
+                    columns.Bound(d => d.ESTADO_GRUPOETAREO).Title("Estado").HeaderHtmlAttributes(new { style = "text-align: center" })
+                        .ClientTemplate("<input type='checkbox' disabled='disabled' \\#=ESTADO_GRUPOETAREO ? checked='checked' : '' \\# />")
+                        .HtmlAttributes(new { style = "text-align: center" });
+                    columns.Bound(d => d.COD_USUARIO).Title("Código Usuario").HeaderHtmlAttributes(new { style = "text-align: center" });
+                })
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .PageSize(20)
+                    .ServerOperation(false)
+                 )
+                .Pageable() //Enable the paging.
+                .Sortable() //Enable the sorting.
+            )*@
+        <div id="grid" class="tabla-datos1"></div>
+    </div>
+</div>
+
+<script>
+
+    var UrlGrid = '@Url.Action("getPsGruposEtareos", "Ps_Grupos_Etareos")';
+
+    $(function () {
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: UrlGrid,
+                    dataType: "json",
+                    type: 'POST'
+                }
+            },
+            pageSize: 10
+        });
+
+        $("#grid").kendoGrid({
+            dataSource: dataSource,
+            height: 450,
+            sortable: true,
+            pageable: {
+                buttonCount: 5
+            },
+            columns: [
+                {
+                    template: "<a href='@Url.Content("~/GruposEtareos/Ps_Grupos_Etareos/Edit/${ID}")'>#= ID #</a>",
+                    field: "ID",
+                    title: "Código",
+                    width: 80
+                },
+                {
+                    field: "DESC_GRUPOETAREO",
+                    title: "Descripción",
+                    width: 220
+                },
+                {
+                    field: "EDAD_MINIMA",
+                    title: "Edad Mínima",
+                    width: 120
+                },
+                {
+                    field: "EDAD_MAXIMA",
+                    title: "Edad Máxima",
+                    width: 120
+                },
+                {
+                    field: "DESC_SEXO",
+                    title: "Sexo",
+                    width: 90
+                },
+                {
+                    field: "DESC_UNIDADMEDIDA",
+                    title: "Unidad de Medida",
+                    width: 150
+                },
+                {
+                    template: "<input type='checkbox' disabled='disabled' #= ESTADO_GRUPOETAREO ? checked='checked' : '' # />",
+                    field: "ESTADO_GRUPOETAREO",
+                    title: "Estado",
+                    width: 80,
+                    attributes: {
+                        style: "text-align: center;"
+                    }
+                },
+                {
+                    field: "COD_USUARIO",
+                    title: "Código Usuario",
+                    width: 130
+                },
+            ]
+        });
+
+    })
+
+</script>

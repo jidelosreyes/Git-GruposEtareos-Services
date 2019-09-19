@@ -1,0 +1,28 @@
+﻿@using Kendo.Mvc.UI
+@{ 
+    var urlRef = HttpContext.Current.Request.UrlReferrer != null && HttpContext.Current.Request.UrlReferrer.IsAbsoluteUri ? HttpContext.Current.Request.UrlReferrer.AbsoluteUri : "";
+}
+<div class="form-row tabla-datos1" id="formParametricaGE">
+    <div class="form-group col-md-12">
+        <div class="k-block k-content" style="text-align: center; vertical-align: middle; min-height: 100%; width: 100%; color: #CCC;">
+            <h3>Permisos insuficientes</h3>
+            <p>El usuario no tiene permisos para ingresar a esta opción</p>
+            <div style="text-align: right">
+                @(Html.Kendo().Button().Name("btnRetornar").Content("<< Retornar").HtmlAttributes(new { type = "submit", @style = "width: 115px", @class = "k-button" }))
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.content-wrapper').hide();
+        $("#hPrincipal").hide();
+        $("#btnRetornar").on("click", function () {
+            //document.location.href = '@urlRef';
+            window.close();
+            return false;
+        });
+    });
+</script>
+
