@@ -1,7 +1,7 @@
 ﻿using GrupoEtareos.App.Filter;
 using GruposEtareos.BI;
 using GruposEtareos.BI.EntitiesAditional;
-using Microsoft.AspNetCore.Cors;
+using System.Web.Http.Cors;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
