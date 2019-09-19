@@ -365,6 +365,8 @@
 
     //#region function load page
     $(function () {
+        $("#COD_SERVICIO").ForceAlfaNumericWithoutPoint();
+        $('body .k-button-icon').css("padding-right", "0px")
         $("#btnConsultaSubGrupo").hide();
         $("#btnDetalle_Paquete").hide();
 

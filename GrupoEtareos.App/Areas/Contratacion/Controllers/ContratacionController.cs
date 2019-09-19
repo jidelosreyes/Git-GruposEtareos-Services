@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -15,7 +16,8 @@ namespace GrupoEtareos.App.Areas.Contratacion.Controllers
     /// <summary>
     /// AuthorizeUser es parametrizado para evitar que se haga uso del controlador sin haberse logueado con las credenciades de INTEGRA
     /// </summary>
-    [AuthorizeUser]
+    //[AuthorizeUser]
+    [EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class ContratacionController : Controller
     {
         /// <summary>

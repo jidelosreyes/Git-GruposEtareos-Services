@@ -298,25 +298,25 @@
             }
         });
     
-        ////Combo Diagnostico var dropdownlistDiagnostico = $("#Diagnostico").kendoDropDownList({
-        $.ajax({
-            url: UrlDiagnostico,
-            type: 'POST',
-            dataType: "json",
-            success: function(data) {
-                $("#Diagnostico").kendoDropDownList({
-                    filter: "startswith",
-                    dataTextField: "DESCR_DIAGNOSTICO",
-                    dataValueField: "DIAGNOSTICO",
-                    optionLabel: "Seleccione",
-                    dataSource: data.rows,
-                    change: changeDiagnostico
-                });
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                toastr.error($.parseHTML(xhr.responseText));
-            }
-        });
+        //////Combo Diagnostico var dropdownlistDiagnostico = $("#Diagnostico").kendoDropDownList({
+        //$.ajax({
+        //    url: UrlDiagnostico,
+        //    type: 'POST',
+        //    dataType: "json",
+        //    success: function(data) {
+        //        $("#Diagnostico").kendoDropDownList({
+        //            filter: "startswith",
+        //            dataTextField: "DESCR_DIAGNOSTICO",
+        //            dataValueField: "DIAGNOSTICO",
+        //            optionLabel: "Seleccione",
+        //            dataSource: data.rows,
+        //            change: changeDiagnostico
+        //        });
+        //    },
+        //    error: function (xhr, textStatus, errorThrown) {
+        //        toastr.error($.parseHTML(xhr.responseText));
+        //    }
+        //});
 
         //Combo GrupoEtareo
         var dropdownlistGrupoEtareo = $("#GrupoEtareo").kendoDropDownList({

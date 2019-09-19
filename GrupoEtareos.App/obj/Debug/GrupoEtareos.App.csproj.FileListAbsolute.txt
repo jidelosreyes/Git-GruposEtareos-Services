@@ -292,3 +292,10 @@ E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\G
 E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Runtime.CompilerServices.Unsafe.xml
 E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Text.Encodings.Web.xml
 E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Threading.Tasks.Extensions.xml
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Net.Http.Formatting.dll
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Web.Cors.dll
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Web.Http.Cors.dll
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Web.Http.dll
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Net.Http.Formatting.xml
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Web.Http.xml
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GrupoEtareos.App\bin\System.Web.Http.Cors.xml

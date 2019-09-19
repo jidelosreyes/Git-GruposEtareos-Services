@@ -1,14 +1,99 @@
-﻿$(window).load(function() {
-    $(".loader").fadeOut(1000, function () { $("#loader").hide() });//.fadeOut("slow", 0.4);
+﻿//$(window).load(function() {
+//    $(".loader").fadeOut(1000, function () { $("#loader").hide() });//.fadeOut("slow", 0.4);
+//});
+
+$(window).on(function () {
+    $(".loader").fadeOut("slow");
 });
+
+window.onload = function () {
+    $(".loader").fadeOut(1000, function () { $("#loader").hide() })
+};
+
+if ($(window.parent.document.getElementById("headerP")).find("meta[http-equiv]").length <= 0) {
+    $(window.parent.document.getElementById("headerP")).append('<meta http-equiv="X-UA-Compatible" content="IE=edge" />');
+}
 
 // Numeric only control handler
 $.fn.ForceNumericOnly = function () {
-    $(this).keydown(function (e) {
+    var $this = $(this);
+    $(this)./**/keydown(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
         var term = e.key || String.fromCharCode(e.keyCode);
         var key = e.charCode || e.keyCode || 0;
-        var re = new RegExp("^([0-9])$");
-        if ((re.test(term) || (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 38 || key === 39 || key === 40 || key === 46) /*Teclas direccinales y de control*/)) {
+        var evt = e || event
+
+        var re = new RegExp("^\\d+$");
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), " - term: ", term, " - charCode: ", charCode, " - re: ", (re))
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+			|| (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 37 || key === 38 || key === 39 || key === 46)
+			|| (key >= 96 && key <= 105) /*Teclas direccionales, de control y teclado númerico*/))) {
+            return true;
+        } else {
+            return false;
+        }
+    }).keypress(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
+        var term = e.key || String.fromCharCode(e.keyCode);
+        var key = e.charCode || e.keyCode || 0;
+        var evt = e || event
+
+        var re = new RegExp("^\\d+$");
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), " - term: ", term, " - charCode: ", charCode, " - re: ", (re))
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+            || (key === 8 || key === 9 || key === 13 || key === 27 /*|| key === 32 || key === 35 || key === 36 || key === 37 || key === 38 || key === 39 || key === 40 || key === 41*/ || key === 46)
+            /*|| (key >= 96 && key <= 105) Teclas direccionales, de control y teclado númerico*/))) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+};
+
+// Numeric With Point only control handler
+$.fn.ForceNumericWithPoint = function () {
+    $(this).keydown(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
+        var term = e.key || String.fromCharCode(e.keyCode);
+        var key = e.charCode || e.keyCode || 0;
+        var evt = e || event
+
+        var re = new RegExp("^([0-9.])$");
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), " - term: ", term, " - charCode: ", charCode, " - re: ", (re))
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+			|| (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 37 || key === 38 || key === 39 /*|| key === 40 || key === 41*/ || key === 46 || key === 110 || key === 190)
+			|| (key >= 96 && key <= 105) /*Teclas direccionales, de control y teclado númerico*/))) {
+            return true;
+        } else {
+            return false;
+        }
+    }).keypress(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
+        var term = e.key || String.fromCharCode(e.keyCode);
+        var key = e.charCode || e.keyCode || 0;
+        var evt = e || event
+
+        var re = new RegExp("^([0-9.])$");
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), " - term: ", term, " - charCode: ", charCode, " - re: ", (re))
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+            || (key === 8 || key === 9 || key === 13 || key === 27 /*|| key === 32 || key === 35 || key === 36 || key === 37 || key === 38 || key === 39 || key === 40 || key === 41*/ || key === 46 || key === 110 || key === 190)
+            /*|| (key >= 96 && key <= 105) Teclas direccionales, de control y teclado númerico*/))) {
             return true;
         } else {
             return false;
@@ -18,11 +103,21 @@ $.fn.ForceNumericOnly = function () {
 
 // AlfaNumeric WithOut Point only control handler
 $.fn.ForceAlfaNumericWithoutPoint = function () {
-    $(this).keydown(function (e) {
-        var term = e.key;
+    $(this).keypress(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
+        var term = e.key || String.fromCharCode(e.keyCode);
         var key = e.charCode || e.keyCode || 0;
+        var evt = e || event
+
         var re = new RegExp("^([a-zñA-ZÑ0-9-])$");
-        if ((re.test(term) || (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 38 || key === 39 || key === 40 || key === 46) /*Teclas direccinales y de control*/)) {
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), " - term: ", term, " - charCode: ", charCode, " - re: ", (re))
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+            || (key === 8 || key === 9 || key === 13 || key === 27 || key === 32 /*|| key === 35 || key === 36 || key === 37 || key === 38 || key === 39*/ || key === 40 || key === 41 || key === 46)
+			|| (key >= 96 && key <= 105) /*Teclas direccionales, de control y teclado númerico*/))) {
             return true;
         } else {
             return false;
@@ -32,11 +127,21 @@ $.fn.ForceAlfaNumericWithoutPoint = function () {
 
 // AlfaNumeric With Point only control handler
 $.fn.ForceAlfaNumericWithPoint = function () {
-    $(this).keydown(function (e) {
-        var term = e.key;
+    $(this).keypress(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
+        var term = e.key || String.fromCharCode(e.keyCode);
         var key = e.charCode || e.keyCode || 0;
-        var re = new RegExp("^([a-zñA-ZÑ0-9.-])$");
-        if ((re.test(term) || (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 38 || key === 39 || key === 40 || key === 46) /*Teclas direccinales y de control*/)) {
+        var evt = e || event
+
+        var re = new RegExp("^[a-zA-Z0-9-.ñÑáéíóúÁÉÍÓÚ :%$;_\"/*+]*$");
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), " - term: ", term, " - charCode: ", charCode, " - re: ", (re))
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+            || (key === 8 || key === 9 || key === 13 || key === 27 || key === 32 /*|| key === 35 || key === 36 || key === 37 || key === 38 || key === 39*/ || key === 40 || key === 41 || key === 46)
+			|| (key >= 96 && key <= 105) /*Teclas direccionales, de control y teclado númerico*/))) {
             return true;
         } else {
             return false;
@@ -46,18 +151,26 @@ $.fn.ForceAlfaNumericWithPoint = function () {
 
 // AlfaNumeric With Point only control handler
 $.fn.ForceAlfaNumericDescriptionService = function () {
-    $(this).keydown(function (e) {
-        var term = e.key;
+    $(this).keypress(function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode
+        var term = e.key || String.fromCharCode(e.keyCode);
         var key = e.charCode || e.keyCode || 0;
+        var evt = e || event
+
         var re = new RegExp("^[^'']*$");
-        if ((re.test(term) || (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 38 || key === 39 || key === 40 || key === 46) /*Teclas direccinales y de control*/)) {
+
+        if (typeof console !== "undefined") {
+            console.log("keypress - key: ", key, " - re.test(term):", re.test(term), "- term: ", term)
+        }
+
+        if ((evt.altKey === false /*&& evt.shiftKey === false*/) && ((re.test(term)
+            || (key === 8 || key === 9 || key === 13 || key === 27 || key === 35 || key === 36 || key === 37 || key === 38 || key === 39 || key === 40 || key === 46) /*Teclas direccinales y de control*/))) {
             return true;
         } else {
             return false;
         }
     });
 };
-
 
 ///Funcion para abrir el modal solicitado.
 var funcOpenModal = function (titelModal, dvModal, gridModal, ctrlCodModal, ctrlDescripModal) {
@@ -120,4 +233,3 @@ var CreateGridBusqueda = function (data, columns, grid, dvModal, scrollTop) {
     $(window).scrollTop(scrollTop);
     console.log("scrollTop 3: ", $(window).scrollTop())
 }
-
