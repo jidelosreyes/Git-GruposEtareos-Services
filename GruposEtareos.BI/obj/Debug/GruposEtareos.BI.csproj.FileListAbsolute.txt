@@ -25,3 +25,4 @@ E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\G
 E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GruposEtareos.BI\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
 E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GruposEtareos.BI\obj\Debug\GruposEtareos.BI.dll
 E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GruposEtareos.BI\obj\Debug\GruposEtareos.BI.pdb
+E:\JoseDeLosReyes\OtrosProyectos\Pruebas_GruposEtareos\slnPruebasGruposEtareos\GruposEtareos.BI\obj\Debug\GruposEtareos.BI.csprojResolveAssemblyReference.cache

@@ -17,7 +17,7 @@ namespace GrupoEtareos.App.Areas.Contratacion.Controllers
     /// AuthorizeUser es parametrizado para evitar que se haga uso del controlador sin haberse logueado con las credenciades de INTEGRA
     /// </summary>
     //[AuthorizeUser]
-    [EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
+    //[EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class ContratacionController : Controller
     {
         /// <summary>

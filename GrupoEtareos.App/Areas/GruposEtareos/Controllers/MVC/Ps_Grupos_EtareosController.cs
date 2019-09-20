@@ -7,13 +7,15 @@ using System.Web.Mvc;
 using GruposEtareos.BI;
 using GrupoEtareos.App.Filter;
 using Microsoft.Owin.Security;
+using System.Web.Http.Cors;
 
 namespace GrupoEtareos.App.Areas.GruposEtareos.Controllers.MVC
 {
     /// <summary>
     /// AuthorizeUser es parametrizado para evitar que se haga uso del controlador sin haberse logueado con las credenciades de INTEGRA
     /// </summary>
-    [AuthorizeUser]
+    //[AuthorizeUser]
+    //[EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
     public class Ps_Grupos_EtareosController : Controller
     {
         /// <summary>
